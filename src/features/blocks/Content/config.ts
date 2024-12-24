@@ -1,13 +1,12 @@
 import type { Block, Field } from 'payload'
 
+import { link } from '@/features/fields/link'
 import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-
-import { link } from '@/fields/link'
 
 const columnFields: Field[] = [
   {
@@ -55,7 +54,7 @@ const columnFields: Field[] = [
   link({
     overrides: {
       admin: {
-        condition: (_, { enableLink }) => Boolean(enableLink),
+        condition: (_: unknown, { enableLink }: { enableLink: boolean }) => Boolean(enableLink),
       },
     },
   }),

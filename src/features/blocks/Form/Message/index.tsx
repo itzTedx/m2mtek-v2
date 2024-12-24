@@ -1,10 +1,11 @@
-import RichText from '@/components/RichText'
+
 import React from 'react'
 
-import { Width } from '../Width'
+import RichText from '@/components/rich-text'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { Width } from '../Width'
 
-export const Message: React.FC = ({ message }: { message: SerializedEditorState }) => {
+export const Message: React.FC<{ message: SerializedEditorState }> = ({ message }) => {
   return (
     <Width className="my-12" width="100">
       {message && <RichText data={message} />}

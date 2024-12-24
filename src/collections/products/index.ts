@@ -1,23 +1,23 @@
 import { authenticated } from "@/features/access/authenticated";
 import { authenticatedOrPublished } from "@/features/access/authenticatedOrPublished";
 import { Banner } from "@/features/blocks/Banner/config";
-import { Code } from "@/features/blocks/Code/config";
+
 import { MediaBlock } from "@/features/blocks/MediaBlock/config";
 import { slugField } from "@/features/fields/slug-field";
 import {
-    MetaDescriptionField,
-    MetaImageField,
-    MetaTitleField,
-    OverviewField,
-    PreviewField,
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+  OverviewField,
+  PreviewField,
 } from "@payloadcms/plugin-seo/fields";
 import {
-    BlocksFeature,
-    FixedToolbarFeature,
-    HeadingFeature,
-    HorizontalRuleFeature,
-    InlineToolbarFeature,
-    lexicalEditor,
+  BlocksFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 import { populateAuthors } from "./hooks/populate-authors";
@@ -79,7 +79,7 @@ export const Products: CollectionConfig = {
                       HeadingFeature({
                         enabledHeadingSizes: ["h1", "h2", "h3", "h4"],
                       }),
-                      BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                      BlocksFeature({ blocks: [Banner,  MediaBlock] }),
                       FixedToolbarFeature(),
                       InlineToolbarFeature(),
                       HorizontalRuleFeature(),
