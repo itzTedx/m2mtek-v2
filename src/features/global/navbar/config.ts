@@ -13,7 +13,13 @@ export const Navbar: GlobalConfig = {
       type: "array",
       fields: [
         {
-          name: "Label",
+          name: "label",
+          label: "Label",
+          type: "text",
+        },
+        {
+          name: "url",
+          label: "Link",
           type: "text",
         },
       ],

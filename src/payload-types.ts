@@ -379,7 +379,8 @@ export interface Navbar {
   id: number;
   navItems?:
     | {
-        Label?: string | null;
+        label?: string | null;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -431,7 +432,8 @@ export interface NavbarSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
-        Label?: T;
+        label?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;

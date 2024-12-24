@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { getCachedGlobal } from "@/lib/get-globals";
 import { Navbar as NavbarType } from "@/payload-types";
 import { IconSearch } from "@tabler/icons-react";
+import Link from "next/link";
 
 export const Navbar = async () => {
   const navData: NavbarType = await getCachedGlobal("navbar", 1)();
@@ -23,9 +24,9 @@ export const Navbar = async () => {
       <nav className="flex items-center rounded-md bg-white/60 backdrop-blur-xl">
         <ul className="flex items-center gap-6 px-6 py-3 font-medium">
           {navItems.map((nav) => (
-
-            <li key={nav.id}>Home</li>
-        
+            <li key={nav.id}>
+              <Link href='#'>{ nav.label}</Link>
+            </li>
           ))}
         </ul>
 
