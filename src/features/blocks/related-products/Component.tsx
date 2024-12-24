@@ -1,14 +1,16 @@
 import clsx from 'clsx'
 import React from 'react'
-import RichText from '@/components/RichText'
 
-import type { Post } from '@/payload-types'
 
-import { Card } from '../../components/Card'
+import { Card } from '@/components/card'
+import RichText from '@/components/rich-text'
+import type { Product } from '@/payload-types'
+
 
 export type RelatedPostsProps = {
   className?: string
-  docs?: Post[]
+  docs?: Product[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   introContent?: any
 }
 

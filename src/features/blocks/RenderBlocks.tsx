@@ -1,19 +1,17 @@
-import { cn } from 'src/utilities/cn'
+
 import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-import { ContentBlock } from '@/blocks/Content/Component'
-import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { ArchiveBlock } from './ArchiveBlock/Component'
+import { CallToActionBlock } from './CallToAction/Component'
+import { ContentBlock } from './Content/Component'
+import { MediaBlock } from './MediaBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
-  formBlock: FormBlock,
   mediaBlock: MediaBlock,
 }
 

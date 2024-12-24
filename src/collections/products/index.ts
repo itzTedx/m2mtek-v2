@@ -3,7 +3,7 @@ import { authenticatedOrPublished } from "@/features/access/authenticatedOrPubli
 import { Banner } from "@/features/blocks/Banner/config";
 
 import { MediaBlock } from "@/features/blocks/MediaBlock/config";
-import { slugField } from "@/features/fields/slug-field";
+import { slugField } from "@/features/fields/slug";
 import {
   MetaDescriptionField,
   MetaImageField,
