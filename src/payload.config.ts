@@ -1,6 +1,5 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
@@ -14,6 +13,7 @@ import { Users } from "./collections/Users";
 import { Cta } from "./features/global/cta/config";
 import { Footer } from "./features/global/footer/config";
 import { Navbar } from "./features/global/navbar/config";
+import { plugins } from "./plugins";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -39,7 +39,7 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    ...plugins
     // storage-adapter-placeholder
   ],
 });

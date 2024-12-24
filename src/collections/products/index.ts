@@ -8,8 +8,7 @@ import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
-  OverviewField,
-  PreviewField,
+  OverviewField
 } from "@payloadcms/plugin-seo/fields";
 import {
   BlocksFeature,
@@ -70,7 +69,7 @@ export const Products: CollectionConfig = {
                 relationTo: "media",
               },
               {
-                name: "content",
+                name: "overview",
                 type: "richText",
                 editor: lexicalEditor({
                   features: ({ rootFeatures }) => {
@@ -89,6 +88,24 @@ export const Products: CollectionConfig = {
                 label: false,
                 required: true,
               },
+              {
+                type: 'collapsible',
+                label: "Features",
+                fields: [
+                  {
+                    name: "features",
+                    type: "array",
+                   
+                    fields: [
+                      {
+                        name: "feature",
+                        type: "text",
+                      },
+                    ],
+                    
+                }]
+              },
+              
             ],
             label: "Content",
           },
@@ -110,15 +127,15 @@ export const Products: CollectionConfig = {
                 hasMany: true,
                 relationTo: "products",
               },
-              {
-                name: "categories",
-                type: "relationship",
-                admin: {
-                  position: "sidebar",
-                },
-                hasMany: true,
-                relationTo: "categories",
-              },
+              // {
+              //   name: "categories",
+              //   type: "relationship",
+              //   admin: {
+              //     position: "sidebar",
+              //   },
+              //   hasMany: true,
+              //   relationTo: "categories",
+              // },
             ],
             label: "Meta",
           },
@@ -139,47 +156,49 @@ export const Products: CollectionConfig = {
               }),
   
               MetaDescriptionField({}),
-              PreviewField({
-                // if the `generateUrl` function is configured
-                hasGenerateFn: true,
+              // PreviewField({
+              //   // if the `generateUrl` function is configured
+              //   hasGenerateFn: true,
   
-                // field paths to match the target field for data
-                titlePath: "meta.title",
-                descriptionPath: "meta.description",
-              }),
+              //   // field paths to match the target field for data
+              //   titlePath: "meta.title",
+              //   descriptionPath: "meta.description",
+              // }),
             ],
           },
         ],
       },
+     
       {
-        name: "publishedAt",
-        type: "date",
-        admin: {
-          date: {
-            pickerAppearance: "dayAndTime",
-          },
-          position: "sidebar",
-        },
-        hooks: {
-          beforeChange: [
-            ({ siblingData, value }) => {
-              if (siblingData._status === "published" && !value) {
-                return new Date();
-              }
-              return value;
-            },
-          ],
-        },
-      },
-      {
-        name: "authors",
+        name: "categories",
         type: "relationship",
         admin: {
           position: "sidebar",
         },
         hasMany: true,
-        relationTo: "users",
+        relationTo: "categories",
+    },
+    {
+      name: "publishedAt",
+      type: "date",
+      admin: {
+        date: {
+          pickerAppearance: "dayAndTime",
+        },
+        position: "sidebar",
       },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === "published" && !value) {
+              return new Date();
+            }
+            return value;
+          },
+        ],
+      },
+    },
+
       // This field is only used to populate the user data via the `populateAuthors` hook
       // This is because the `user` collection has access control locked to protect user privacy
       // GraphQL will also not return mutated user data that differs from the underlying schema

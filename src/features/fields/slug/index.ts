@@ -23,7 +23,6 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
     ...checkboxOverrides,
   }
 
-
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const slugField: TextField = {
