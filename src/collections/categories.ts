@@ -1,27 +1,26 @@
+import { anyone } from "@/features/access/anyone";
 import { authenticated } from "@/features/access/authenticated";
 import type { CollectionConfig } from "payload";
 
 
-
-export const Users: CollectionConfig = {
-  slug: "users",
+export const Categories: CollectionConfig = {
+  slug: "categories",
+  
   access: {
-    admin: authenticated,
     create: authenticated,
     delete: authenticated,
-    read: authenticated,
+    read: anyone,
     update: authenticated,
   },
   admin: {
-    defaultColumns: ["name", "email"],
-    useAsTitle: "name",
+    useAsTitle: "title",
   },
-  auth: true,
+  
   fields: [
     {
-      name: "name",
+      name: "title",
       type: "text",
+      required: true,
     },
   ],
-  timestamps: true,
 };

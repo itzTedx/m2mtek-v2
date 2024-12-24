@@ -7,7 +7,9 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
+import { Categories } from "./collections/categories";
 import { Media } from "./collections/Media";
+import { Products } from "./collections/products";
 import { Users } from "./collections/Users";
 import { Cta } from "./features/global/cta/config";
 import { Footer } from "./features/global/footer/config";
@@ -23,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Products, Categories,  Media,Users ],
   globals: [Navbar, Cta, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

@@ -17,10 +17,10 @@ export async function Cta() {
           <p className="text-balance pt-3">{ctaData.description}</p>
         </div>
         <div className="flex items-center justify-center">
-          <Button className="bg-brand w-fit items-center gap-2">
+          <Button className="bg-brand w-fit text-base font-medium font-aloevera h-12 px-6 items-center gap-3">
             {ctaData.buttonText}
             <Separator orientation="vertical" />
-            <IconPhone className="size-4" />
+            <IconPhone className="size-5" stroke={1.5} />
           </Button>
         </div>
       </div>

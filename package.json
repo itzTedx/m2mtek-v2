@@ -18,6 +18,7 @@
     "@payloadcms/db-postgres": "3.9.0",
     "@payloadcms/next": "3.9.0",
     "@payloadcms/payload-cloud": "3.9.0",
+    "@payloadcms/plugin-seo": "^3.11.0",
     "@payloadcms/richtext-lexical": "3.9.0",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",

@@ -1,9 +1,10 @@
 import type { GlobalConfig } from "payload";
 
-import { revalidateNavbar } from "./hooks/revalidateHeader";
+import { revalidateNavbar } from "./hooks/revalidate-navbar";
 
 export const Navbar: GlobalConfig = {
   slug: "navbar",
+  
   access: {
     read: () => true,
   },
@@ -16,16 +17,19 @@ export const Navbar: GlobalConfig = {
           name: "label",
           label: "Label",
           type: "text",
+        
         },
         {
           name: "url",
           label: "Link",
           type: "text",
+    
         },
       ],
       maxRows: 6,
       admin: {
         initCollapsed: true,
+        isSortable: true
       },
     },
   ],

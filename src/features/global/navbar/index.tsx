@@ -25,7 +25,7 @@ export const Navbar = async () => {
         <ul className="flex items-center gap-6 px-6 py-3 font-medium">
           {navItems.map((nav) => (
             <li key={nav.id}>
-              <Link href='#'>{ nav.label}</Link>
+              <Link href={nav.url || '/'}>{ nav.label}</Link>
             </li>
           ))}
         </ul>
