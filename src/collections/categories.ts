@@ -15,6 +15,8 @@ export const Categories: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
+    defaultColumns: ['title', 'slug']
+  
   },
   
   fields: [
@@ -23,6 +25,7 @@ export const Categories: CollectionConfig = {
       type: "text",
       required: true,
     },
-    ...slugField()
+    ...slugField(),
+   
   ],
 };
