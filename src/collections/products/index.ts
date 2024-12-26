@@ -8,7 +8,8 @@ import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
-  OverviewField
+  OverviewField,
+  PreviewField
 } from "@payloadcms/plugin-seo/fields";
 import {
   BlocksFeature,
@@ -64,10 +65,15 @@ export const Products: CollectionConfig = {
           {
             fields: [
               {
-                name: "heroImage",
-                type: "upload",
-                relationTo: "media",
+                name: "images",
+                type: "array",
+                fields: [{
+                  name: 'image',
+                  type: 'upload',
+                  relationTo: 'media',
+                }]
               },
+             
               {
                 name: "overview",
                 type: "richText",
@@ -90,54 +96,71 @@ export const Products: CollectionConfig = {
               },
               {
                 type: 'collapsible',
-                label: "Features",
+                label: ({ data }: { data?: { title?: string } }) => data?.title || 'Untitled',
                 fields: [
                   {
                     name: "features",
                     type: "array",
-                   
+                    admin: {
+                      components: {
+                        RowLabel: '@/collections/products/array-row-label#ArrayRowLabel',
+                      }
+                    },
                     fields: [
                       {
-                        name: "feature",
+                        name: "title",
+                        label: 'Feature',
                         type: "text",
                       },
                     ],
                     
                 }]
               },
-              
+              {
+                type: 'collapsible',
+                label: "Specifications",
+                fields: [
+                  {
+                    name: "specifications",
+                    type: "array",
+                    admin: {
+                      components: {
+                        RowLabel: '@/collections/products/array-row-label#ArrayRowLabel',
+                      }
+                    },
+                    fields: [
+                      {
+                        name: "title",
+                        type: "text",
+                      },
+                      {
+                        name: "value",
+                        type: "text",
+                      },
+                    ],
+                    
+                }]
+              },
             ],
             label: "Content",
           },
           {
             fields: [
               {
-                name: "relatedProducts",
-                type: "relationship",
+                name: "resources",
+                type: "array",
                 admin: {
                   position: "sidebar",
                 },
-                filterOptions: ({ id }) => {
-                  return {
-                    id: {
-                      not_in: [id],
-                    },
-                  };
-                },
-                hasMany: true,
-                relationTo: "products",
+                fields: [{
+                  name: 'document',
+                  type: 'upload',
+                  relationTo: 'documents',
+                }]
               },
-              // {
-              //   name: "categories",
-              //   type: "relationship",
-              //   admin: {
-              //     position: "sidebar",
-              //   },
-              //   hasMany: true,
-              //   relationTo: "categories",
-              // },
+             
             ],
-            label: "Meta",
+            label: "Resources",
           },
           {
             name: "meta",
@@ -156,14 +179,14 @@ export const Products: CollectionConfig = {
               }),
   
               MetaDescriptionField({}),
-              // PreviewField({
-              //   // if the `generateUrl` function is configured
-              //   hasGenerateFn: true,
+              PreviewField({
+                // if the `generateUrl` function is configured
+                hasGenerateFn: true,
   
-              //   // field paths to match the target field for data
-              //   titlePath: "meta.title",
-              //   descriptionPath: "meta.description",
-              // }),
+                // field paths to match the target field for data
+                titlePath: "meta.title",
+                descriptionPath: "meta.description",
+              }),
             ],
           },
         ],
@@ -178,6 +201,23 @@ export const Products: CollectionConfig = {
         hasMany: true,
         relationTo: "categories",
     },
+    {
+      name: "relatedProducts",
+      type: "relationship",
+      admin: {
+        position: "sidebar",
+      },
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        };
+      },
+      hasMany: true,
+      relationTo: "products",
+    },
+   
     {
       name: "publishedAt",
       type: "date",
@@ -222,7 +262,8 @@ export const Products: CollectionConfig = {
             type: "text",
           },
         ],
-      },
+    },
+      
       ...slugField(),
     ],
     hooks: {
