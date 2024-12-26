@@ -260,6 +260,7 @@ export interface Category {
   title: string;
   slug?: string | null;
   slugLock?: boolean | null;
+  products?: (number | Product)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -414,6 +415,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   slugLock?: T;
+  products?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -20,7 +20,6 @@ import {
   lexicalEditor,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
-import { addProductToCategories } from "./hooks/add-prod-cat";
 import { populateAuthors } from "./hooks/populate-authors";
 import { revalidateDelete, revalidateProduct } from "./hooks/revalidate-product";
 
@@ -270,7 +269,7 @@ export const Products: CollectionConfig = {
       ...slugField(),
     ],
     hooks: {
-      afterChange: [revalidateProduct,addProductToCategories],
+      afterChange: [revalidateProduct],
       afterRead: [populateAuthors],
       afterDelete: [revalidateDelete],
     },

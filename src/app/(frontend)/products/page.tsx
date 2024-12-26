@@ -1,24 +1,32 @@
-import { payload } from "@/lib/payload"
+import Link from "next/link";
 
-export const dynamic = 'force-static'
-export const revalidate = 600
+import { payload } from "@/lib/payload";
+
+export const dynamic = "force-static";
+export const revalidate = 600;
 
 export default async function Products() {
-  const categories = await payload.find({
-    collection: 'categories',
+  const products = await payload.find({
+    collection: "products",
     limit: 20,
     depth: 1,
-    sort: 'createdAt',
-    select: {
-      slug: true,
-      title: true
-    },
-    
-  })
-  
+    sort: "createdAt",
+    pagination: false,
+  });
+
   return (
-    <div className="py-24 container">
-      <pre>{ JSON.stringify(categories.docs, null, 2)}</pre>
+    <div className="container py-24">
+      <div className="grid grid-cols-4 gap-6">
+        {products.docs.map((product) => {
+          const href = `/products/${product.slug}`;
+
+          return (
+            <Link href={href} key={product.id}>
+              {product.title}
+            </Link>
+          );
+        })}
+      </div>
     </div>
-  )
+  );
 }
