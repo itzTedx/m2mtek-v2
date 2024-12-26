@@ -1,5 +1,6 @@
 import { anyone } from "@/features/access/anyone";
 import { authenticated } from "@/features/access/authenticated";
+import { slugField } from "@/features/fields/slug";
 import type { CollectionConfig } from "payload";
 
 
@@ -22,5 +23,6 @@ export const Categories: CollectionConfig = {
       type: "text",
       required: true,
     },
+    ...slugField()
   ],
 };
