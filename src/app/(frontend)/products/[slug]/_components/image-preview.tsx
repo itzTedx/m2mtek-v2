@@ -8,6 +8,8 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { Product } from "@/payload-types";
@@ -63,10 +65,12 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
     () =>
       data.images &&
       data.images.map((image) => (
-        <CarouselItem key={image.id} className="relative aspect-[5/3] w-full">
-          {image.image && (
-            <Media resource={image.image} fill imgClassName="object-cover" />
-          )}
+        <CarouselItem key={image.id} className="w-full cursor-pointer pl-4">
+          <div className="relative aspect-[5/3] overflow-hidden rounded-md bg-white">
+            {image.image && (
+              <Media resource={image.image} fill imgClassName="object-cover" />
+            )}
+          </div>
         </CarouselItem>
       )),
     [data.images]
@@ -78,17 +82,17 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
       data.images.map((image, index) => (
         <CarouselItem
           key={image.id}
-          className="relative aspect-square w-full basis-1/5"
+          className={cn(
+            "relative aspect-square w-full basis-1/5 overflow-hidden rounded-md border-white",
+            index === current ? "border-2" : ""
+          )}
           onClick={() => handleClick(index)}
         >
           {image.image && (
             <Media
               fill
               resource={image.image}
-              imgClassName={cn(
-                index === current ? "border-2" : "",
-                "object-cover"
-              )}
+              imgClassName={cn("object-cover")}
             />
           )}
         </CarouselItem>
@@ -97,14 +101,16 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
   );
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-6">
       <Carousel setApi={setThumbnailApi} orientation="vertical">
         <CarouselContent className="m-1 w-24 gap-3">
           {thumbnailImages}
         </CarouselContent>
+        {current > 0 && <CarouselPrevious />}
+        <CarouselNext />
       </Carousel>
       <Carousel setApi={setMainApi} className="shrink-0 grow">
-        <CarouselContent className="bg-gray-200">{mainImage}</CarouselContent>
+        <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
       </Carousel>
     </div>
   );

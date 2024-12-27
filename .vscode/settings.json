@@ -8,7 +8,5 @@
     "*.css": "tailwindcss"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": [
-    "Tiktok",
-  ]
+  "cSpell.words": ["aloevera", "Tiktok"]
 }
