@@ -3,6 +3,8 @@ import { cache } from "react";
 import RichText from "@/components/rich-text";
 import { payload } from "@/lib/payload";
 
+import { ImagePreview } from "./_components/image-preview";
+
 type Args = {
   params: Promise<{
     slug?: string;
@@ -15,8 +17,10 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="container pt-16">
-      <header className="grid grid-cols-3 py-12">
-        <div className="col-span-2"></div>
+      <header className="grid grid-cols-3 gap-4 py-12">
+        <div className="col-span-2">
+          <ImagePreview data={post} />
+        </div>
         <div className="">
           <div className="">
             <h1 className="text-3xl font-semibold">{post.title}</h1>
@@ -29,7 +33,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
       <section className="container">
         <RichText data={post.overview} enableGutter={false} />
       </section>
-      <pre>{JSON.stringify(post, null, 2)}</pre>
+      <pre className="text-wrap">{JSON.stringify(post, null, 2)}</pre>
     </main>
   );
 }

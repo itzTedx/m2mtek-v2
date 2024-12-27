@@ -12,8 +12,8 @@ type CMSLinkType = {
   label?: string | null;
   newTab?: boolean | null;
   reference?: {
-    relationTo: "pages" | "posts";
-    value:Product | string | number;
+    relationTo: "pages" | "posts" | "categories" | "products";
+    value: Product | string | number;
   } | null;
   size?: ButtonProps["size"] | null;
   type?: "custom" | "reference" | null;

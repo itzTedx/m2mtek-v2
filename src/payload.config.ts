@@ -6,11 +6,11 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
+import { Media } from "./collections/Media";
+import { Users } from "./collections/Users";
 import { Categories } from "./collections/categories";
 import { Documents } from "./collections/documents";
-import { Media } from "./collections/Media";
 import { Products } from "./collections/products";
-import { Users } from "./collections/Users";
 import { Cta } from "./features/global/cta/config";
 import { Footer } from "./features/global/footer/config";
 import { Navbar } from "./features/global/navbar/config";
@@ -26,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Products, Categories, Media, Users, Documents ],
+  collections: [Products, Categories, Media, Users, Documents],
   globals: [Navbar, Cta, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -40,7 +40,7 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    ...plugins
+    ...plugins,
     // storage-adapter-placeholder
   ],
 });
