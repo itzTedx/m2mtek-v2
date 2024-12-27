@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { cache } from "react";
 
+import { RelatedPosts } from "@/components/related-post";
 import RichText from "@/components/rich-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { getClientSideURL } from "@/lib/get-url";
 import { payload } from "@/lib/payload";
 
 import { ImagePreview } from "./_components/image-preview";
-import PDFThumbnail from "./_components/pdf-thumbnail";
 
 type Args = {
   params: Promise<{
@@ -73,12 +73,12 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           </li>
         )}
       </ul>
-      <section id="overview" className="container">
+      <section id="overview" className="container scroll-mt-12">
         <Heading>Overview</Heading>
         <RichText data={product.overview} enableGutter={false} />
       </section>
       {product.features && (
-        <section id="features" className="container">
+        <section id="features" className="container scroll-mt-12">
           <Heading>Features</Heading>
           <ul className="grid list-inside list-disc grid-cols-2 gap-4">
             {product.features.map((feature) => (
@@ -88,7 +88,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         </section>
       )}
       {product.specifications && (
-        <section id="specifications" className="container">
+        <section id="specifications" className="container scroll-mt-12">
           <Heading>Specifications</Heading>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <Table>
@@ -123,7 +123,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         </section>
       )}
       {product.resources && (
-        <section id="resources" className="container">
+        <section id="resources" className="container scroll-mt-12">
           <Heading>Resources</Heading>
           <div>
             {product.resources.map((res) => {
@@ -131,15 +131,13 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
                 typeof res.document === "object" && res.document !== null
                   ? res.document.url
                   : "";
+
               return (
                 <div key={res.id}>
                   <Link
                     href={`${getClientSideURL()}${resourceUrl}`}
                     target="_blank"
                   >
-                    <PDFThumbnail
-                      fileUrl={`${getClientSideURL()}${resourceUrl}`}
-                    />
                     {typeof res.document === "object" && res.document !== null
                       ? res.document.filename
                       : ""}
@@ -150,6 +148,25 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           </div>
         </section>
       )}
+      {product.relatedProducts && (
+        <section id="related" className="container scroll-mt-12">
+          <Heading>Related Products</Heading>
+
+          <RelatedPosts
+            className="col-span-3 col-start-1 mt-12 max-w-[52rem] grid-rows-[2fr] lg:grid lg:grid-cols-subgrid"
+            docs={product.relatedProducts.filter(
+              (product) => typeof product === "object"
+            )}
+          />
+        </section>
+      )}
+
+      <section id="related" className="container scroll-mt-12">
+        <Heading>Products related to this</Heading>
+        <pre className="text-wrap">
+          {JSON.stringify(product.relatedProducts, null, 2)}
+        </pre>
+      </section>
     </main>
   );
 }
@@ -166,6 +183,8 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
     collection: "products",
     limit: 1,
+    depth: 3,
+
     where: {
       slug: {
         equals: slug,

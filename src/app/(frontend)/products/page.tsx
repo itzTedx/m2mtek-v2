@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { payload } from "@/lib/payload";
+
+import { ProductCard } from "./_components/product-card";
 
 export const dynamic = "force-static";
 export const revalidate = 600;
@@ -17,15 +17,9 @@ export default async function Products() {
   return (
     <div className="container py-24">
       <div className="grid grid-cols-4 gap-6">
-        {products.docs.map((product) => {
-          const href = `/products/${product.slug}`;
-
-          return (
-            <Link href={href} key={product.id}>
-              {product.title}
-            </Link>
-          );
-        })}
+        {products.docs.map((product, index) => (
+          <ProductCard product={product} key={index} />
+        ))}
       </div>
     </div>
   );
