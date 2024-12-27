@@ -3,9 +3,11 @@ import { cache } from "react";
 
 import RichText from "@/components/rich-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { getClientSideURL } from "@/lib/get-url";
 import { payload } from "@/lib/payload";
 
 import { ImagePreview } from "./_components/image-preview";
+import PDFThumbnail from "./_components/pdf-thumbnail";
 
 type Args = {
   params: Promise<{
@@ -49,7 +51,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           <p>{product.description}</p>
         </div>
       </header>
-      <ul className="flex w-full items-center gap-3 border-b border-black">
+      <ul className="container sticky top-16 z-50 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
         {product.overview && (
           <li>
             <Link href="#overview">Overview</Link>
@@ -78,7 +80,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
       {product.features && (
         <section id="features" className="container">
           <Heading>Features</Heading>
-          <ul className="grid grid-cols-2 gap-4">
+          <ul className="grid list-inside list-disc grid-cols-2 gap-4">
             {product.features.map((feature) => (
               <li key={feature.id}>{feature.title}</li>
             ))}
@@ -96,7 +98,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
                   .map((spec) => (
                     <TableRow key={spec.id}>
                       <TableCell className="w-48">{spec.title}</TableCell>
-                      <TableCell className="font-medium">
+                      <TableCell className="bg-white/20 font-medium">
                         {spec.value}
                       </TableCell>
                     </TableRow>
@@ -110,7 +112,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
                   .map((spec) => (
                     <TableRow key={spec.id}>
                       <TableCell className="w-48">{spec.title}</TableCell>
-                      <TableCell className="font-medium">
+                      <TableCell className="bg-white/20 font-medium">
                         {spec.value}
                       </TableCell>
                     </TableRow>
@@ -120,9 +122,45 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           </div>
         </section>
       )}
+      {product.resources && (
+        <section id="resources" className="container">
+          <Heading>Resources</Heading>
+          <div>
+            {product.resources.map((res) => {
+              const resourceUrl =
+                typeof res.document === "object" && res.document !== null
+                  ? res.document.url
+                  : "";
+              return (
+                <div key={res.id}>
+                  <Link
+                    href={`${getClientSideURL()}${resourceUrl}`}
+                    target="_blank"
+                  >
+                    <PDFThumbnail
+                      fileUrl={`${getClientSideURL()}${resourceUrl}`}
+                    />
+                    {typeof res.document === "object" && res.document !== null
+                      ? res.document.filename
+                      : ""}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </main>
   );
 }
+
+const Heading = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <h2 className="mb-2 font-aloevera text-2xl font-semibold text-brand-600">
+      {children}
+    </h2>
+  );
+};
 
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
@@ -137,7 +175,3 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
 
   return result.docs?.[0] || null;
 });
-
-const Heading = ({ children }: { children: React.ReactNode }) => {
-  return <h2 className="font-aloevera text-2xl font-semibold">{children}</h2>;
-};
