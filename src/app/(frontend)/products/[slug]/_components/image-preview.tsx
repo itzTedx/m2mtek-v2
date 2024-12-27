@@ -63,9 +63,9 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
     () =>
       data.images &&
       data.images.map((image) => (
-        <CarouselItem key={image.id} className="relative aspect-video w-full">
+        <CarouselItem key={image.id} className="relative aspect-[5/3] w-full">
           {image.image && (
-            <Media resource={image.image} fill className="object-cover" />
+            <Media resource={image.image} fill imgClassName="object-cover" />
           )}
         </CarouselItem>
       )),
@@ -85,9 +85,9 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
             <Media
               fill
               resource={image.image}
-              className={cn(
-                "object-cover",
-                index === current ? "border-2" : ""
+              imgClassName={cn(
+                index === current ? "border-2" : "",
+                "object-cover"
               )}
             />
           )}
@@ -98,8 +98,8 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
 
   return (
     <div className="flex gap-4">
-      <Carousel setApi={setThumbnailApi}>
-        <CarouselContent className="m-1 flex w-32 flex-col gap-3">
+      <Carousel setApi={setThumbnailApi} orientation="vertical">
+        <CarouselContent className="m-1 w-24 gap-3">
           {thumbnailImages}
         </CarouselContent>
       </Carousel>
