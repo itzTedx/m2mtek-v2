@@ -23,7 +23,7 @@ export async function Footer() {
       <div className="container grid max-w-6xl grid-cols-2 gap-8 py-16">
         <div className="">
           <Link className="flex items-center invert" href="/">
-            <Logo />
+            <Logo isWhite />
           </Link>
           <p className="py-3 font-light leading-relaxed">
             {footerData.description}

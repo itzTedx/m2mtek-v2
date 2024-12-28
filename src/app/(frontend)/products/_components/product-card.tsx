@@ -1,12 +1,7 @@
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 import { Media } from "@/components/Media";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Product } from "@/payload-types";
 
@@ -19,23 +14,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link href={href}>
-      <Card>
-        <CardContent>
-          <div className="relative aspect-square">
-            {product.images?.[0]?.image && (
-              <Media
-                fill
-                resource={product.images[0].image}
-                imgClassName={cn("object-cover")}
-              />
-            )}
-          </div>
-          <CardTitle className="text-lg text-brand-600">
-            {product.sku}
-          </CardTitle>
-          <CardDescription>{product.title}</CardDescription>
-        </CardContent>
-      </Card>
+      <div className="relative aspect-square">
+        {product.images?.[0]?.image ? (
+          <Media
+            fill
+            resource={product.images[0].image}
+            imgClassName={cn("object-cover")}
+          />
+        ) : (
+          "No Image"
+        )}
+      </div>
+      <Separator />
+      <h3 className="text-lg text-brand-600">{product.sku}</h3>
+      <p>{product.title}</p>
     </Link>
   );
 };

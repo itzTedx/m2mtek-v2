@@ -2,16 +2,20 @@ import { payload } from "@/lib/payload";
 
 import { ProductCard } from "./_components/product-card";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+// export const dynamic = "force-static";
+// export const revalidate = 600;
 
 export default async function Products() {
   const products = await payload.find({
     collection: "products",
-    limit: 20,
     depth: 1,
     sort: "createdAt",
     pagination: false,
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
   });
 
   return (

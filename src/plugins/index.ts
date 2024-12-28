@@ -1,7 +1,6 @@
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
-import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { Plugin } from "payload";
 
 import { getServerSideURL } from "@/lib/get-url";
@@ -22,15 +21,15 @@ export const plugins: Plugin[] = [
     generateTitle,
     generateURL,
   }),
-  uploadthingStorage({
-    collections: {
-      media: true,
-      documents: true,
-    },
-    options: {
-      token: process.env.UPLOADTHING_TOKEN,
-      acl: "public-read",
-    },
-  }),
+  // uploadthingStorage({
+  //   collections: {
+  //     media: true,
+  //     documents: true,
+  //   },
+  //   options: {
+  //     token: process.env.UPLOADTHING_TOKEN,
+  //     acl: "public-read",
+  //   },
+  // }),
   payloadCloudPlugin(),
 ];
