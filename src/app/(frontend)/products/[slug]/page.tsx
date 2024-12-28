@@ -21,7 +21,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="container space-y-12 pb-12 pt-16">
-      <header className="grid grid-cols-3 gap-6 py-12">
+      <header className="grid grid-cols-3 gap-6 pt-12">
         <div className="col-span-2">
           <ImagePreview data={product} />
         </div>
@@ -51,7 +51,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           <p>{product.description}</p>
         </div>
       </header>
-      <ul className="container sticky top-16 z-50 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
+      <ul className="container sticky top-16 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
         {product.overview && (
           <li>
             <Link href="#overview">Overview</Link>
@@ -150,7 +150,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
       )}
       {product.relatedProducts && (
         <section id="related" className="container scroll-mt-12">
-          <Heading>Related Products</Heading>
+          <Heading>Products related to this</Heading>
 
           <RelatedPosts
             className="col-span-3 col-start-1 mt-12 max-w-[52rem] grid-rows-[2fr] lg:grid lg:grid-cols-subgrid"
@@ -160,13 +160,6 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           />
         </section>
       )}
-
-      <section id="related" className="container scroll-mt-12">
-        <Heading>Products related to this</Heading>
-        <pre className="text-wrap">
-          {JSON.stringify(product.relatedProducts, null, 2)}
-        </pre>
-      </section>
     </main>
   );
 }

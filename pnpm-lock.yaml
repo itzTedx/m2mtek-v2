@@ -30,8 +30,8 @@ importers:
         specifier: 3.9.0
         version: 3.9.0(cmn2uibitysswvvhzev3crgw5a)
       '@payloadcms/storage-uploadthing':
-        specifier: ^3.11.0
-        version: 3.11.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(tailwindcss@3.4.17)
+        specifier: ^3.9.0
+        version: 3.9.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(tailwindcss@3.4.17)
       '@payloadcms/ui':
         specifier: ^3.9.0
         version: 3.9.0(@types/react@19.0.1)(monaco-editor@0.52.2)(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
@@ -1379,30 +1379,6 @@ packages:
     peerDependencies:
       payload: 3.9.0
 
-  '@payloadcms/plugin-cloud-storage@3.11.0':
-    resolution: {integrity: sha512-WAqUwne4p8gdID6ucQdOw4rAw4FvV2/WcleOm34XoMUIVwyb1CuUVTFjAO6GNj9/GyGY5+2/GIH6fjVXxe2IJQ==}
-    peerDependencies:
-      '@aws-sdk/client-s3': ^3.614.0
-      '@aws-sdk/lib-storage': ^3.614.0
-      '@azure/abort-controller': ^1.0.0
-      '@azure/storage-blob': ^12.11.0
-      '@google-cloud/storage': ^7.7.0
-      '@vercel/blob': ^0.22.3
-      payload: 3.11.0
-    peerDependenciesMeta:
-      '@aws-sdk/client-s3':
-        optional: true
-      '@aws-sdk/lib-storage':
-        optional: true
-      '@azure/abort-controller':
-        optional: true
-      '@azure/storage-blob':
-        optional: true
-      '@google-cloud/storage':
-        optional: true
-      '@vercel/blob':
-        optional: true
-
   '@payloadcms/plugin-cloud-storage@3.9.0':
     resolution: {integrity: sha512-bVQrj2jIjrvpjSztX3xcil4iFwGUGl/PmWS0jKFZ8VMEi8kM4lp6S3Qi2+KTFMFjvqhj71zwNAv0lq+s/iNnHw==}
     peerDependencies:
@@ -1463,11 +1439,11 @@ packages:
       react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
       react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
 
-  '@payloadcms/storage-uploadthing@3.11.0':
-    resolution: {integrity: sha512-0adsq+mjTP25+i/MiYAC+Dgz6WbCFgN/QxofaqNqaddXMp/Dk3O53oip5Ah/UYXerRyCv3QQDIdYZouaqQRzuQ==}
+  '@payloadcms/storage-uploadthing@3.9.0':
+    resolution: {integrity: sha512-QvjQxgDjxfXtlbkNqSUhYrxUG54hIAoAWMl1o7NX9P93N00oIkglLXTTZMrtnmtqh6duhYQgey+uyMUK0YWzug==}
     engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
-      payload: 3.11.0
+      payload: 3.9.0
 
   '@payloadcms/translations@3.9.0':
     resolution: {integrity: sha512-GN8tHKksO1s+jGA9GCWTdY1JDXV4PMl/RjPTrxjT+EhDRtk75OPm3nIdbBeBs/NlmpLYrISbjiRvV1fXjDBILA==}
@@ -6658,15 +6634,6 @@ snapshots:
       - debug
       - encoding
 
-  '@payloadcms/plugin-cloud-storage@3.11.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))':
-    dependencies:
-      find-node-modules: 2.1.3
-      payload: 3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
-      range-parser: 1.2.1
-    optionalDependencies:
-      '@aws-sdk/client-s3': 3.717.0
-      '@aws-sdk/lib-storage': 3.717.0(@aws-sdk/client-s3@3.717.0)
-
   '@payloadcms/plugin-cloud-storage@3.9.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))':
     dependencies:
       find-node-modules: 2.1.3
@@ -6743,9 +6710,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@payloadcms/storage-uploadthing@3.11.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(tailwindcss@3.4.17)':
+  '@payloadcms/storage-uploadthing@3.9.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(tailwindcss@3.4.17)':
     dependencies:
-      '@payloadcms/plugin-cloud-storage': 3.11.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))
+      '@payloadcms/plugin-cloud-storage': 3.9.0(@aws-sdk/client-s3@3.717.0)(@aws-sdk/lib-storage@3.717.0(@aws-sdk/client-s3@3.717.0))(payload@3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))
       payload: 3.9.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
       uploadthing: 7.3.0(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(tailwindcss@3.4.17)
     transitivePeerDependencies:
