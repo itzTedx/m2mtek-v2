@@ -1,4 +1,6 @@
+import { ExpertiseSection } from "./_components/expertise-section";
 import { HeaderSection } from "./_components/header-section";
+import { WhyUsSection } from "./_components/why-us-section";
 
 export default function About() {
   return (
@@ -19,6 +21,8 @@ export default function About() {
         </p>
       </header>
       <HeaderSection />
+      <WhyUsSection />
+      <ExpertiseSection />
     </main>
   );
 }

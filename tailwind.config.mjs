@@ -2,7 +2,7 @@
 import typography from "@tailwindcss/typography";
 import animate from "tailwindcss-animate";
 
-export default {
+const config = {
   darkMode: ["class"],
   content: ["./src/**/*.{jsx,tsx}"], // tell tailwind where to look
   plugins: [animate, typography],
@@ -46,6 +46,11 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          200: "hsl(var(--accent-copy-200))",
+          600: "hsl(var(--accent-copy-600))",
+          700: "hsl(var(--accent-copy-700))",
+          800: "hsl(var(--accent-copy-800))",
+          950: "hsl(var(--accent-copy-950))",
         },
         background: "hsl(var(--background))",
         border: "hsla(var(--border))",
@@ -137,3 +142,5 @@ export default {
     },
   },
 };
+
+export default config;

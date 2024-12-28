@@ -9,6 +9,12 @@
     --brand-500: 197 100% 42%;
     --brand-600: 197 100% 32%;
 
+    --accent-copy-200: 204 8% 88%;
+    --accent-copy-600: 198 7% 55%;
+    --accent-copy-700: 220 9% 46%;
+    --accent-copy-800: 199 8% 37%;
+    --accent-copy-950: 200 8% 15%;
+
     --background: 210 3% 89%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
