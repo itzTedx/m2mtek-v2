@@ -11,33 +11,37 @@ export type RelatedPostsProps = {
 
 export const RelatedPosts = async ({ className, docs }: RelatedPostsProps) => {
   return (
-    <div className={clsx("container", className)}>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-        {docs?.map(async (doc, index) => {
-          if (typeof doc === "string") return null;
-          const result = await payload.find({
-            collection: "products",
-            limit: 1,
-            select: {
-              title: true,
-              images: true,
-              sku: true,
-              description: true,
-              overview: true,
-              updatedAt: true,
-              createdAt: true,
+    <div
+      className={clsx(
+        "grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8",
+        className
+      )}
+    >
+      {docs?.map(async (doc, index) => {
+        if (typeof doc === "string") return null;
+        const result = await payload.find({
+          collection: "products",
+          limit: 1,
+          select: {
+            title: true,
+            images: true,
+            sku: true,
+            description: true,
+            overview: true,
+            updatedAt: true,
+            createdAt: true,
+            slug: true,
+          },
+          pagination: false,
+          where: {
+            slug: {
+              equals: doc.slug,
             },
-            pagination: false,
-            where: {
-              slug: {
-                equals: doc.slug,
-              },
-            },
-          });
+          },
+        });
 
-          return <ProductCard product={result.docs[0]} key={index} />;
-        })}
-      </div>
+        return <ProductCard product={result.docs[0]} key={index} />;
+      })}
     </div>
   );
 };

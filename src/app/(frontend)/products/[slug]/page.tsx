@@ -51,109 +51,111 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           <p>{product.description}</p>
         </div>
       </header>
-      <ul className="container sticky top-16 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
-        {product.overview && (
-          <li>
-            <Link href="#overview">Overview</Link>
-          </li>
-        )}
+      <div className="relative space-y-12">
+        <ul className="container sticky top-16 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
+          {product.overview && (
+            <li>
+              <Link href="#overview">Overview</Link>
+            </li>
+          )}
+          {product.features && (
+            <li>
+              <Link href="#features">Features</Link>
+            </li>
+          )}
+          {product.specifications && (
+            <li>
+              <Link href="#specifications">Specifications</Link>
+            </li>
+          )}
+          {product.resources && (
+            <li>
+              <Link href="#resources">Resources</Link>
+            </li>
+          )}
+        </ul>
+        <section id="overview" className="container scroll-mt-12">
+          <Heading>Overview</Heading>
+          <RichText data={product.overview} enableGutter={false} />
+        </section>
         {product.features && (
-          <li>
-            <Link href="#features">Features</Link>
-          </li>
+          <section id="features" className="container scroll-mt-12">
+            <Heading>Features</Heading>
+            <ul className="grid list-inside list-disc grid-cols-2 gap-4">
+              {product.features.map((feature) => (
+                <li key={feature.id}>{feature.title}</li>
+              ))}
+            </ul>
+          </section>
         )}
         {product.specifications && (
-          <li>
-            <Link href="#specifications">Specifications</Link>
-          </li>
+          <section id="specifications" className="container scroll-mt-12">
+            <Heading>Specifications</Heading>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <Table>
+                <TableBody>
+                  {product.specifications
+                    .slice(0, Math.ceil(product.specifications.length / 2))
+                    .map((spec) => (
+                      <TableRow key={spec.id}>
+                        <TableCell className="w-48">{spec.title}</TableCell>
+                        <TableCell className="bg-white/20 font-medium">
+                          {spec.value}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+              <Table>
+                <TableBody>
+                  {product.specifications
+                    .slice(Math.ceil(product.specifications.length / 2))
+                    .map((spec) => (
+                      <TableRow key={spec.id}>
+                        <TableCell className="w-48">{spec.title}</TableCell>
+                        <TableCell className="bg-white/20 font-medium">
+                          {spec.value}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </div>
+          </section>
         )}
         {product.resources && (
-          <li>
-            <Link href="#resources">Resources</Link>
-          </li>
-        )}
-      </ul>
-      <section id="overview" className="container scroll-mt-12">
-        <Heading>Overview</Heading>
-        <RichText data={product.overview} enableGutter={false} />
-      </section>
-      {product.features && (
-        <section id="features" className="container scroll-mt-12">
-          <Heading>Features</Heading>
-          <ul className="grid list-inside list-disc grid-cols-2 gap-4">
-            {product.features.map((feature) => (
-              <li key={feature.id}>{feature.title}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-      {product.specifications && (
-        <section id="specifications" className="container scroll-mt-12">
-          <Heading>Specifications</Heading>
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <Table>
-              <TableBody>
-                {product.specifications
-                  .slice(0, Math.ceil(product.specifications.length / 2))
-                  .map((spec) => (
-                    <TableRow key={spec.id}>
-                      <TableCell className="w-48">{spec.title}</TableCell>
-                      <TableCell className="bg-white/20 font-medium">
-                        {spec.value}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-            <Table>
-              <TableBody>
-                {product.specifications
-                  .slice(Math.ceil(product.specifications.length / 2))
-                  .map((spec) => (
-                    <TableRow key={spec.id}>
-                      <TableCell className="w-48">{spec.title}</TableCell>
-                      <TableCell className="bg-white/20 font-medium">
-                        {spec.value}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </div>
-        </section>
-      )}
-      {product.resources && (
-        <section id="resources" className="container scroll-mt-12">
-          <Heading>Resources</Heading>
-          <div>
-            {product.resources.map((res) => {
-              const resourceUrl =
-                typeof res.document === "object" && res.document !== null
-                  ? res.document.url
-                  : "";
+          <section id="resources" className="container scroll-mt-12">
+            <Heading>Resources</Heading>
+            <div>
+              {product.resources.map((res) => {
+                const resourceUrl =
+                  typeof res.document === "object" && res.document !== null
+                    ? res.document.url
+                    : "";
 
-              return (
-                <div key={res.id}>
-                  <Link
-                    href={`${getClientSideURL()}${resourceUrl}`}
-                    target="_blank"
-                  >
-                    {typeof res.document === "object" && res.document !== null
-                      ? res.document.filename
-                      : ""}
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
+                return (
+                  <div key={res.id}>
+                    <Link
+                      href={`${getClientSideURL()}${resourceUrl}`}
+                      target="_blank"
+                    >
+                      {typeof res.document === "object" && res.document !== null
+                        ? res.document.filename
+                        : ""}
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+      </div>
+
       {product.relatedProducts && (
         <section id="related" className="container scroll-mt-12">
           <Heading>Products related to this</Heading>
 
           <RelatedPosts
-            className="col-span-3 col-start-1 mt-12 max-w-[52rem] grid-rows-[2fr] lg:grid lg:grid-cols-subgrid"
             docs={product.relatedProducts.filter(
               (product) => typeof product === "object"
             )}
