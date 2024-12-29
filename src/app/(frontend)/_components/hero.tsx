@@ -19,8 +19,8 @@ export const Hero = () => {
           priority
         />
       </div>
-      <div className="container relative z-10 grid h-full grid-cols-2 items-center">
-        <div className="mb-40 self-end px-6">
+      <div className="container relative z-10 grid h-full items-center md:grid-cols-2">
+        <div className="order-2 mb-40 self-end px-6 sm:order-1">
           <h2 className="font-medium">Modern & Sleek</h2>
           <p className="mb-3">
             Ultra slim design seamlessly aligns
@@ -34,7 +34,7 @@ export const Hero = () => {
             <IconArrowNarrowRight />
           </Link>
         </div>
-        <div className="-mt-52 space-y-3 rounded-xl bg-white/30 p-9 backdrop-blur-xl">
+        <div className="mt-6 space-y-3 rounded-xl bg-white/30 p-9 backdrop-blur-xl md:-mt-52">
           <p className="font-aloevera">Innovative TV Wall Mounts</p>
           <h1 className="font-aloevera text-[2.8rem] font-bold leading-none">
             Bridging Technologies with Modern TV Wall Mounts
