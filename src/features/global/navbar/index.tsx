@@ -1,12 +1,11 @@
 import Link from "next/link";
 
-import { IconSearch } from "@tabler/icons-react";
-
 import { Logo } from "@/components/assets/logo";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getCachedGlobal } from "@/lib/get-globals";
 import { Navbar as NavbarType } from "@/payload-types";
+
+import { SearchInput } from "./components/search-input";
 
 export const Navbar = async () => {
   const navData: NavbarType = await getCachedGlobal("navbar", 1)();
@@ -35,16 +34,7 @@ export const Navbar = async () => {
           ))}
         </ul>
 
-        <div className="relative h-full">
-          <Input
-            className="peer h-full bg-white/50 ps-9"
-            placeholder="Search..."
-            type="text"
-          />
-          <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
-            <IconSearch size={16} strokeWidth={2} aria-hidden="true" />
-          </div>
-        </div>
+        <SearchInput />
       </nav>
     </header>
   );

@@ -22,7 +22,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <Media
             fill
             resource={product.images[0].image}
-            imgClassName={cn("object-cover group-hover:brightness-90")}
+            imgClassName={cn(
+              "object-cover group-hover:brightness-90 transition"
+            )}
           />
         ) : (
           "No Image"

@@ -8,5 +8,5 @@
     "*.css": "tailwindcss"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["aloevera", "Tiktok", "uploadthing"]
+  "cSpell.words": ["aloevera", "Mtek", "Tiktok", "uploadthing"]
 }

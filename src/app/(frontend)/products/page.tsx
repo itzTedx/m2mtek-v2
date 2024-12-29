@@ -1,5 +1,6 @@
 import { payload } from "@/lib/payload";
 
+import { Banner } from "./_components/banner";
 import { ProductCard } from "./_components/product-card";
 
 export const dynamic = "force-static";
@@ -19,12 +20,22 @@ export default async function Products() {
   });
 
   return (
-    <div className="container py-24">
-      <div className="grid grid-cols-4 gap-6">
-        {products.docs.map((product, index) => (
-          <ProductCard product={product} key={index} />
-        ))}
-      </div>
-    </div>
+    <main>
+      <Banner />
+      <section className="container py-14">
+        <h2 className="text-2xl font-semibold">
+          Adjustable Workstations & Accessories
+        </h2>
+        <p>
+          Smart desks, ergonomic chairs, and versatile accessories to create the
+          perfect workspace for productivity and comfort.
+        </p>
+        <div className="grid grid-cols-4 gap-6 pt-9">
+          {products.docs.map((product, index) => (
+            <ProductCard product={product} key={index} />
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
