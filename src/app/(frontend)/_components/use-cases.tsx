@@ -9,7 +9,7 @@ export const UseCases = () => {
         </h3>
         <div className="grid gap-4 md:grid-cols-12">
           <div className="relative col-span-6 flex h-96 items-end overflow-hidden rounded-md">
-            <p className="relative z-10 bg-white/10 p-6 font-semibold backdrop-blur-lg">
+            <p className="relative z-10 w-full bg-white/10 p-6 font-semibold text-white backdrop-blur-lg">
               Living Rooms: Achieve a clean and elegant setup that enhances your
               entertainment experience.
             </p>
@@ -21,7 +21,7 @@ export const UseCases = () => {
             />
           </div>
           <div className="relative col-span-6 flex h-96 items-end overflow-hidden rounded-md">
-            <p className="relative z-10 bg-white/10 p-6 font-semibold backdrop-blur-lg">
+            <p className="relative z-10 w-full bg-white/10 p-6 font-semibold text-white backdrop-blur-lg">
               Offices & Boardrooms: Modern solutions for presentations and
               collaborative workspaces.
             </p>
@@ -33,7 +33,7 @@ export const UseCases = () => {
             />
           </div>
           <div className="relative col-span-5 flex h-96 items-end overflow-hidden rounded-md">
-            <p className="relative z-10 bg-white/10 p-6 font-semibold backdrop-blur-lg">
+            <p className="relative z-10 w-full bg-white/10 p-6 font-semibold text-white backdrop-blur-lg">
               Retail & Commercial Spaces: Showcase digital signage and
               advertising with a sleek, professional finish.
             </p>
@@ -45,7 +45,7 @@ export const UseCases = () => {
             />
           </div>
           <div className="relative col-span-7 flex h-96 items-end overflow-hidden rounded-md">
-            <p className="relative z-10 bg-white/10 p-6 font-semibold backdrop-blur-lg">
+            <p className="relative z-10 w-full bg-white/10 p-6 font-semibold text-white backdrop-blur-lg">
               Home Theaters: Elevate your viewing with precision-mounted large
               screens.
             </p>
