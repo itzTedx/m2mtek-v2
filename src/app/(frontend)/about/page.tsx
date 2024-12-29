@@ -1,3 +1,4 @@
+import { AboutFooter } from "./_components/about-footer";
 import { ExpertiseSection } from "./_components/expertise-section";
 import { HeaderSection } from "./_components/header-section";
 import { WhyUsSection } from "./_components/why-us-section";
@@ -23,6 +24,7 @@ export default function About() {
       <HeaderSection />
       <WhyUsSection />
       <ExpertiseSection />
+      <AboutFooter />
     </main>
   );
 }
