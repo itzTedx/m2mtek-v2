@@ -10,7 +10,7 @@ export default function SearchPage() {
   console.log("Query: ", query);
 
   return (
-    <main className="py-28 text-center font-bold capitalize">
+    <main className="min-h-dvh py-28 text-center font-bold capitalize">
       Search Results for: {query}
     </main>
   );
