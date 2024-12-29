@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
 import { Logo } from "@/components/assets/logo";
 import { Separator } from "@/components/ui/separator";
@@ -35,8 +36,9 @@ export const Navbar = async () => {
             </li>
           ))}
         </ul>
-
-        <SearchInput />
+        <Suspense>
+          <SearchInput />
+        </Suspense>
       </nav>
     </header>
   );
