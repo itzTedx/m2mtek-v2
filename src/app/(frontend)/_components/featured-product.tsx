@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/custom/badge";
 
 export const FeaturedProduct = () => {
   return (
-    <section className="grid h-dvh grid-cols-2 bg-white">
+    <section className="grid h-dvh bg-white md:grid-cols-2">
       <div className="container flex flex-col justify-between py-20 pl-24">
         <div className="">
           <h2 className="font-aloevera text-6xl font-bold">

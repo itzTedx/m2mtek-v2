@@ -5,7 +5,7 @@ export const AboutUs = () => {
     <section className="container py-28">
       <div className="grid grid-cols-4">
         <div className="col-span-3">
-          <h2 className="text-brand-600 font-aloevera text-4xl font-bold">
+          <h2 className="font-aloevera text-4xl font-bold text-brand-600">
             Who we are
           </h2>
           <p className="text-balance text-xl leading-loose">
@@ -20,7 +20,7 @@ export const AboutUs = () => {
         </div>
       </div>
 
-      <ul className="mt-12 grid grid-cols-4 gap-6">
+      <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {ABOUT_FEATURES.map((feature, index) => (
           <li key={index}>
             <h3 className="font-aloevera font-medium">{feature.title}</h3>

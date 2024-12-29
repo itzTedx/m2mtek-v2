@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import React from "react";
 
+import BreakpointIndicator from "@/components/tailwind-indicator";
 import { Cta } from "@/features/global/cta/cta";
 import { Footer } from "@/features/global/footer";
 import { Navbar } from "@/features/global/navbar";
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <BreakpointIndicator />
         <Cta />
         <Footer />
       </body>

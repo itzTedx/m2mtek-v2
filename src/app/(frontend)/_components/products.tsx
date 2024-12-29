@@ -15,7 +15,7 @@ export const Products = () => {
       <h3 className="font-aloevera text-5xl font-bold">
         Some of our <span className="text-orange-600">top</span> sellers
       </h3>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {PRODUCTS.map((product, index) => (
           <Link key={index} href={`/products/${slugify(product.model)}`}>
             <Card>

@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 export const WhyUsSection = () => {
   return (
     <section className="bg-accent-950 text-white">
-      <div className="container grid grid-cols-2 gap-6 py-28">
+      <div className="container grid gap-6 py-28 md:grid-cols-2">
         <div className="">
-          <p className="text-accent-600 pb-3">Why Choose M2Mtek?</p>
-          <h2 className="font-aloevera text-8xl font-medium">
+          <p className="pb-3 text-accent-600">Why Choose M2Mtek?</p>
+          <h2 className="font-aloevera text-5xl font-medium md:text-8xl">
             Core Values
             <br />
             That Drive{" "}
@@ -49,7 +49,7 @@ export const WhyUsSection = () => {
               </span>
               <div className="space-y-4">
                 <h3 className="text-2xl">{value.title}</h3>
-                <p className="text-accent-200 text-lg leading-relaxed">
+                <p className="text-lg leading-relaxed text-accent-200">
                   {value.description}
                 </p>
               </div>

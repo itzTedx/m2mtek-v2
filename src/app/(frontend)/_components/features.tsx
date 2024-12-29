@@ -12,9 +12,9 @@ export const Features = () => {
           </Badge>
         </div>
         <div className="border-t bg-white/10 p-6 backdrop-blur-xl">
-          <ul className="container grid grid-cols-4 divide-x text-white">
+          <ul className="container grid text-white max-md:gap-4 md:grid-cols-2 md:divide-x lg:grid-cols-4">
             {FEATURES.map((feature, index) => (
-              <li key={index} className="px-6 first:pl-0 last:pr-0">
+              <li key={index} className="first:pl-0 last:pr-0 md:px-6">
                 <h3 className="pb-2 font-aloevera text-2xl font-semibold">
                   {feature.title}
                 </h3>
@@ -25,7 +25,12 @@ export const Features = () => {
         </div>
       </div>
       <div className="absolute top-0 -z-30 h-dvh w-full">
-        <Image src="/images/wall-mount-tv.jpg" fill alt="" />
+        <Image
+          src="/images/wall-mount-tv.jpg"
+          fill
+          alt=""
+          className="object-cover"
+        />
       </div>
     </section>
   );

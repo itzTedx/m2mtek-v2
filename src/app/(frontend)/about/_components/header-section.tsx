@@ -1,6 +1,6 @@
 export const HeaderSection = () => {
   return (
-    <section className="container grid grid-cols-3 gap-6 pb-16">
+    <section className="container grid gap-6 pb-16 md:grid-cols-3">
       {HEADER_SECTION.map((section, index) => (
         <div
           key={index}

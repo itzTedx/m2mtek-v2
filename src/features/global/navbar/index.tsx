@@ -18,8 +18,8 @@ export const Navbar = async () => {
         className="flex items-center gap-3 rounded-md bg-white/60 p-3 px-6 backdrop-blur-xl"
       >
         <Logo />
-        <Separator orientation="vertical" />
-        <p className="text-xs">
+        <Separator orientation="vertical" className="max-sm:hidden" />
+        <p className="text-xs max-sm:hidden">
           Bridging
           <br />
           Technologies
@@ -29,7 +29,9 @@ export const Navbar = async () => {
         <ul className="flex items-center gap-6 px-6 py-3 font-medium">
           {navItems.map((nav) => (
             <li key={nav.id}>
-              <Link href={nav.url || "/"}>{nav.label}</Link>
+              <Link href={nav.url || "/"} className="text-sm md:text-base">
+                {nav.label}
+              </Link>
             </li>
           ))}
         </ul>

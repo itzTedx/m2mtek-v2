@@ -1,7 +1,7 @@
 export const ExtraFeatures = () => {
   return (
     <section className="bg-gray-900 py-16 text-white">
-      <ul className="container grid grid-cols-3 gap-6">
+      <ul className="container grid gap-6 md:grid-cols-3">
         {FEATURES.map((feature, index) => (
           <li
             key={index}
