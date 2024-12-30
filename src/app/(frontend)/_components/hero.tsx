@@ -36,10 +36,10 @@ export const Hero = () => {
         </div>
         <div className="order-1 mt-12 space-y-3 rounded-xl bg-white/30 p-9 backdrop-blur-xl sm:order-2 md:-mt-52">
           <p className="font-aloevera">Innovative TV Wall Mounts</p>
-          <h1 className="font-aloevera text-xl font-bold leading-none md:text-[2.8rem]">
+          <h1 className="font-aloevera text-4xl font-bold leading-none md:text-[2.8rem]">
             Bridging Technologies with Modern TV Wall Mounts
           </h1>
-          <p className="text-balance text-lg">
+          <p className="text-balance text-base md:text-lg">
             Ultra-slim, sleek, and innovative wall mounts for large screens.
             Transform your living spaces with precision-engineered solutions
             that combine elegance and functionality.
