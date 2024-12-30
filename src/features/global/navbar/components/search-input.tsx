@@ -1,39 +1,73 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { IconArrowRight, IconSearch } from "@tabler/icons-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { IconSearch } from "@tabler/icons-react";
-
+import { Button } from "@/components/ui/button";
+import { Form, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useDebounceCallback } from "@/hooks/use-debounce";
+
+const searchSchema = z.object({
+  query: z.string().min(1),
+});
 
 export const SearchInput = () => {
-  const [value, setValue] = useState("");
-  const searchparams = useSearchParams();
-  console.log("Search Params: ", searchparams);
+  // const [value, setValue] = useState("");
+  // const searchparams = useSearchParams();
+  // const router = useRouter();
 
-  const debounced = useDebounceCallback(setValue, 500);
+  // const debounced = useDebounceCallback(setValue, 500);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set("q", value);
+  const form = useForm<z.infer<typeof searchSchema>>({
+    resolver: zodResolver(searchSchema),
+    defaultValues: {
+      query: "",
+    },
+  });
 
-    window.history.pushState({}, "", `/search?${searchParams}`);
-  }, [value]);
+  function onSubmit(values: z.infer<typeof searchSchema>) {
+    const validation = searchSchema.safeParse(values);
+
+    if (validation.success) {
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("q", values.query);
+      window.history.pushState({}, "", `/search?${searchParams}`);
+    }
+  }
 
   return (
-    <form className="relative h-full">
-      <Input
-        className="peer h-full bg-white/50 ps-9"
-        placeholder="Search..."
-        type="text"
-        defaultValue={value}
-        onChange={(e) => debounced(e.target.value)}
-      />
-      <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
-        <IconSearch size={16} strokeWidth={2} aria-hidden="true" />
-      </div>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="h-full">
+        <FormField
+          control={form.control}
+          name="query"
+          render={({ field }) => (
+            <FormItem className="relative h-full space-y-0">
+              <Input
+                id="search"
+                className="peer h-full bg-white/50 pe-9 ps-9"
+                placeholder="Search..."
+                type="search"
+                {...field}
+              />
+              <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
+                <IconSearch size={16} strokeWidth={2} />
+              </div>
+              <Button
+                className="absolute inset-y-0 end-0 flex h-full items-center justify-center rounded-e-lg text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                variant="ghost"
+                size="icon"
+                aria-label="Submit search"
+                type="submit"
+              >
+                <IconArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+              </Button>
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
   );
 };
