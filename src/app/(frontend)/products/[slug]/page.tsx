@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { cache } from "react";
 
@@ -6,8 +7,24 @@ import RichText from "@/components/rich-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { getClientSideURL } from "@/lib/get-url";
 import { payload } from "@/lib/payload";
+import { generateMeta } from "@/utils/generate-meta";
 
 import { ImagePreview } from "./_components/image-preview";
+
+export async function generateStaticParams() {
+  const posts = await payload.find({
+    collection: "products",
+    draft: false,
+    limit: 1000,
+    overrideAccess: false,
+  });
+
+  const params = posts.docs.map(({ slug }) => {
+    return { slug };
+  });
+
+  return params;
+}
 
 type Args = {
   params: Promise<{
@@ -189,3 +206,12 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
 
   return result.docs?.[0] || null;
 });
+
+export async function generateMetadata({
+  params: paramsPromise,
+}: Args): Promise<Metadata> {
+  const { slug = "" } = await paramsPromise;
+  const post = await queryPostBySlug({ slug });
+
+  return generateMeta({ doc: post });
+}
