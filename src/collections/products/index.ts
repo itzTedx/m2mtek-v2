@@ -37,7 +37,7 @@ export const Products: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ["title", "categories", "updatedAt"],
+    defaultColumns: ["title", "sku", "categories", "updatedAt"],
     useAsTitle: "title",
   },
   defaultPopulate: {

@@ -2,6 +2,7 @@ import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
+import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { Plugin } from "payload";
 
 import { beforeSyncWithSearch } from "@/app/(frontend)/search/before-sync-with-search";
@@ -24,16 +25,16 @@ export const plugins: Plugin[] = [
     generateTitle,
     generateURL,
   }),
-  // uploadthingStorage({
-  //   collections: {
-  //     media: true,
-  //     documents: true,
-  //   },
-  //   options: {
-  //     token: process.env.UPLOADTHING_TOKEN,
-  //     acl: "public-read",
-  //   },
-  // }),
+  uploadthingStorage({
+    collections: {
+      media: true,
+      documents: true,
+    },
+    options: {
+      token: process.env.UPLOADTHING_TOKEN,
+      acl: "public-read",
+    },
+  }),
   searchPlugin({
     collections: ["products"],
     beforeSync: beforeSyncWithSearch,
