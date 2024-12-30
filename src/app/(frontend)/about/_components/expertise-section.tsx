@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 
 export const ExpertiseSection = () => {
   return (
-    <section className="container grid gap-6 pb-28 md:grid-cols-2">
-      <ul className="-mt-36 space-y-12 px-9">
+    <section className="container grid gap-6 md:grid-cols-2 md:pb-28">
+      <ul className="-mt-40 space-y-12 md:-mt-36 md:px-9">
         {EXPERTISE_ITEMS.map((item, index) => (
           <li key={index} className="rounded-xl bg-brand p-10">
             {item.Icon}
-            <h4 className="pb-3 pt-6 font-aloevera text-5xl font-bold text-white">
+            <h4 className="pb-3 pt-6 font-aloevera text-3xl font-bold text-white md:text-5xl">
               {item.title}
             </h4>
             <p className="text-xl text-brand-100">{item.description}</p>
@@ -15,19 +15,20 @@ export const ExpertiseSection = () => {
         ))}
       </ul>
 
-      <div className="overflow-x-clip py-20">
+      <div className="overflow-x-clip py-12 md:py-20">
         <p className="pb-3 tracking-wide text-accent-700">Our Expertise</p>
-        <h3 className="font-aloevera text-4xl font-medium md:text-8xl">
+        <h3 className="font-aloevera text-5xl font-medium md:text-8xl">
           Solutions <br />
           for Every
           <br />
-          <span className="flex items-center gap-4 text-brand">
+          <span className="flex items-center text-brand md:gap-4">
             Environment{" "}
             <svg
               width="58"
               height="58"
               viewBox="0 0 58 58"
               fill="none"
+              className="max-md:scale-50"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

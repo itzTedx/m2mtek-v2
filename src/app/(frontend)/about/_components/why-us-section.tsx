@@ -3,20 +3,21 @@ import { cn } from "@/lib/utils";
 export const WhyUsSection = () => {
   return (
     <section className="bg-accent-950 text-white">
-      <div className="container grid gap-6 py-28 md:grid-cols-2">
+      <div className="container grid gap-6 py-12 md:grid-cols-2 md:py-28">
         <div className="">
           <p className="pb-3 text-accent-600">Why Choose M2Mtek?</p>
           <h2 className="font-aloevera text-5xl font-medium md:text-8xl">
             Core Values
             <br />
             That Drive{" "}
-            <span className="flex items-center gap-4 text-orange-600">
+            <span className="flex items-center text-orange-600 md:gap-4">
               Innovation{" "}
               <svg
                 width="58"
                 height="58"
                 viewBox="0 0 58 58"
                 fill="none"
+                className="max-md:scale-50"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path

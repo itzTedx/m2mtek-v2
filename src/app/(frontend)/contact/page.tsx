@@ -7,8 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function ContactPage() {
   return (
-    <main className="grid grid-cols-2">
-      <section className="container max-w-md space-y-14 px-28 py-36">
+    <main className="grid md:grid-cols-2">
+      <section className="container order-2 max-w-md space-y-14 py-24 md:order-1 md:px-28 md:py-36">
         <div className="">
           <h2 className="pb-4 font-medium text-accent-800">Office</h2>
           <h3 className="pb-2 text-sm text-accent-800">
@@ -43,7 +43,7 @@ export default function ContactPage() {
           </Link>
         </div>
       </section>
-      <section className="container bg-white px-28 py-36">
+      <section className="container order-1 bg-white py-20 md:order-2 md:px-28 md:py-36">
         <h1 className="pb-3 font-aloevera text-3xl font-semibold text-brand-600">
           We&apos;re Here to Help
         </h1>

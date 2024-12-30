@@ -6,6 +6,7 @@ import { Logo } from "@/components/assets/logo";
 import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -36,12 +37,14 @@ export const MobileNavbar = ({ navData }: { navData: NavbarType }) => {
             </SheetHeader>
             <Separator />
             <nav>
-              <ul className="flex flex-col gap-2 py-3 font-medium">
+              <ul className="flex flex-col gap-6 py-3 font-medium">
                 {navItems.map((nav) => (
                   <li key={nav.id}>
-                    <Link href={nav.url || "/"} className="py-3">
-                      {nav.label}
-                    </Link>
+                    <SheetClose asChild>
+                      <Link href={nav.url || "/"} className="py-6">
+                        {nav.label}
+                      </Link>
+                    </SheetClose>
                   </li>
                 ))}
               </ul>
