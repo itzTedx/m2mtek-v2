@@ -1,8 +1,11 @@
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
+import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
 import { Plugin } from "payload";
 
+import { beforeSyncWithSearch } from "@/app/(frontend)/search/before-sync-with-search";
+import { searchFields } from "@/app/(frontend)/search/field-overrides";
 import { getServerSideURL } from "@/lib/get-url";
 import { Category, Product } from "@/payload-types";
 
@@ -31,5 +34,14 @@ export const plugins: Plugin[] = [
   //     acl: "public-read",
   //   },
   // }),
+  searchPlugin({
+    collections: ["products"],
+    beforeSync: beforeSyncWithSearch,
+    searchOverrides: {
+      fields: ({ defaultFields }) => {
+        return [...defaultFields, ...searchFields];
+      },
+    },
+  }),
   payloadCloudPlugin(),
 ];

@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 
-export default function SearchResults() {
+export default function SearchResults({ results }: { results: number }) {
   const searchparams = useSearchParams();
 
   const query = searchparams.get("q");
@@ -10,8 +10,8 @@ export default function SearchResults() {
   console.log("Query: ", query);
 
   return (
-    <div className="min-h-dvh py-28 text-center font-bold capitalize">
-      Search Results for: {query}
+    <div className="text-center font-aloevera text-2xl font-medium capitalize">
+      {results} Results found for &quot;{query}&quot;
     </div>
   );
 }

@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconArrowRight, IconSearch } from "@tabler/icons-react";
 import { useForm } from "react-hook-form";
@@ -8,24 +11,32 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useDebounce } from "@/features/hooks/uses-debounce";
 
 const searchSchema = z.object({
   query: z.string().min(1),
 });
 
 export const SearchInput = () => {
-  // const [value, setValue] = useState("");
-  // const searchparams = useSearchParams();
-  // const router = useRouter();
+  const [value, setValue] = useState("");
+  const router = useRouter();
+  const searchparams = useSearchParams();
 
-  // const debounced = useDebounceCallback(setValue, 500);
+  const query = searchparams.get("q");
+  console.log("query input", query);
 
   const form = useForm<z.infer<typeof searchSchema>>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
-      query: "",
+      query: query || undefined,
     },
   });
+
+  const debouncedValue = useDebounce(value);
+
+  useEffect(() => {
+    router.push(`/search${debouncedValue ? `?q=${debouncedValue}` : ""}`);
+  }, [debouncedValue, router]);
 
   function onSubmit(values: z.infer<typeof searchSchema>) {
     const validation = searchSchema.safeParse(values);
@@ -43,14 +54,17 @@ export const SearchInput = () => {
         <FormField
           control={form.control}
           name="query"
-          render={({ field }) => (
+          render={({}) => (
             <FormItem className="relative h-full space-y-0">
               <Input
                 id="search"
                 className="peer h-full bg-white/50 pe-9 ps-9"
                 placeholder="Search..."
                 type="search"
-                {...field}
+                // {...field}
+                onChange={(event) => {
+                  setValue(event.target.value);
+                }}
               />
               <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
                 <IconSearch size={16} strokeWidth={2} />
