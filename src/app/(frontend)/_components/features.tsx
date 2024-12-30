@@ -11,14 +11,14 @@ export const Features = () => {
             Seamlessly Designed for Modern Living
           </Badge>
         </div>
-        <div className="border-t bg-white/10 p-6 backdrop-blur-xl">
-          <ul className="container grid text-white max-md:gap-4 md:grid-cols-2 md:divide-x lg:grid-cols-4">
+        <div className="border-t bg-white/10 p-6 backdrop-blur-sm md:backdrop-blur-xl">
+          <ul className="container grid divide-white/20 text-white max-md:gap-4 max-md:divide-y md:grid-cols-2 md:divide-x lg:grid-cols-4">
             {FEATURES.map((feature, index) => (
               <li key={index} className="first:pl-0 last:pr-0 md:px-6">
-                <h3 className="pb-2 font-aloevera text-2xl font-semibold">
+                <h3 className="pb-2 font-aloevera text-lg font-semibold md:text-2xl">
                   {feature.title}
                 </h3>
-                <p>{feature.description}</p>
+                <p className="text-sm md:text-base">{feature.description}</p>
               </li>
             ))}
           </ul>

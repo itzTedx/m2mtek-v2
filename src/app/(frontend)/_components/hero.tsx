@@ -34,9 +34,9 @@ export const Hero = () => {
             <IconArrowNarrowRight />
           </Link>
         </div>
-        <div className="order-1 mt-9 space-y-3 rounded-xl bg-white/30 p-9 backdrop-blur-xl sm:order-2 md:-mt-52">
+        <div className="order-1 mt-12 space-y-3 rounded-xl bg-white/30 p-9 backdrop-blur-xl sm:order-2 md:-mt-52">
           <p className="font-aloevera">Innovative TV Wall Mounts</p>
-          <h1 className="font-aloevera text-[2.8rem] font-bold leading-none">
+          <h1 className="font-aloevera text-xl font-bold leading-none md:text-[2.8rem]">
             Bridging Technologies with Modern TV Wall Mounts
           </h1>
           <p className="text-balance text-lg">

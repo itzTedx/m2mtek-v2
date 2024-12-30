@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export const AboutUs = () => {
   return (
-    <section className="container py-28">
-      <div className="grid grid-cols-4">
-        <div className="col-span-3">
+    <section className="container py-12 md:py-28">
+      <div className="grid md:grid-cols-4">
+        <div className="md:col-span-3">
           <h2 className="font-aloevera text-4xl font-bold text-brand-600">
             Who we are
           </h2>
-          <p className="text-balance text-xl leading-loose">
+          <p className="text-balance leading-loose md:text-xl">
             At M2MTEK, we craft ultra-slim TV wall mounts designed to transform
             how you enjoy entertainment. Our products effortlessly integrate
             large-screen TVs into modern homes, offices, and commercial spaces,

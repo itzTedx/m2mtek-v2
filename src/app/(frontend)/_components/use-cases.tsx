@@ -4,7 +4,7 @@ export const UseCases = () => {
   return (
     <section className="bg-white py-14">
       <div className="container">
-        <h3 className="mb-3 font-aloevera text-5xl font-bold">
+        <h3 className="mb-3 font-aloevera text-4xl font-bold md:text-5xl">
           <span className="text-orange-600">Perfect</span> for Every Space
         </h3>
         <div className="grid gap-4 md:grid-cols-12">

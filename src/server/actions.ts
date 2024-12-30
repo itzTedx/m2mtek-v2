@@ -24,7 +24,31 @@ export const queryProducts = cache(async () => {
     limit: 10000,
     depth: 1,
     sort: "-createdAt",
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
   });
 
-  return result.docs?.[0] || null;
+  return result.docs || null;
+});
+
+export const queryFeaturedProducts = cache(async () => {
+  const result = await payload.find({
+    collection: "products",
+    limit: 10000,
+    depth: 1,
+    sort: "-createdAt",
+    where: {
+      _status: {
+        equals: "published",
+      },
+      featured: {
+        equals: true,
+      },
+    },
+  });
+
+  return result.docs || null;
 });

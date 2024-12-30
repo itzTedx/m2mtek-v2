@@ -1,85 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
+import { queryFeaturedProducts } from "@/server/actions";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
-import { slugify } from "@/utils/slugify";
+import { ProductCard } from "../products/_components/product-card";
 
-export const Products = () => {
+export const Products = async () => {
+  const products = await queryFeaturedProducts();
+
+  if (!products) return null;
   return (
-    <section className="container space-y-9 py-12">
-      <h3 className="font-aloevera text-5xl font-bold">
+    <section className="container space-y-4 py-12 md:space-y-9">
+      <h3 className="font-aloevera text-4xl font-bold md:text-5xl">
         Some of our <span className="text-orange-600">top</span> sellers
       </h3>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {PRODUCTS.map((product, index) => (
-          <Link key={index} href={`/products/${slugify(product.model)}`}>
-            <Card>
-              <CardContent>
-                <div className="relative aspect-square">
-                  <Image
-                    src={product.image}
-                    alt=""
-                    className="object-contain"
-                    fill
-                  />
-                </div>
-                <CardTitle className="text-lg text-brand-600">
-                  {product.model}
-                </CardTitle>
-                <CardDescription>{product.title}</CardDescription>
-              </CardContent>
-            </Card>
-          </Link>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </section>
   );
 };
-
-const PRODUCTS = [
-  {
-    image: "/images/products/wall-1.jpg",
-    model: "MT 6040F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-2.jpg",
-    model: "MEA01-3",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-3.jpg",
-    model: "MT 4040F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-4.jpg",
-    model: "MT 8060F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-2.jpg",
-    model: "MEA01-3",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-3.jpg",
-    model: "MT 4040F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-4.jpg",
-    model: "MT 8060F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-  {
-    image: "/images/products/wall-1.jpg",
-    model: "MT 6040F",
-    title: "Large Screen Fixed TV wall mount",
-  },
-];

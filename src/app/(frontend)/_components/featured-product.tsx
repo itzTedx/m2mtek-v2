@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/custom/badge";
 
 export const FeaturedProduct = () => {
   return (
-    <section className="grid h-[calc(100dvh-5rem)] bg-white md:grid-cols-2">
-      <div className="container flex flex-col justify-between py-20 pl-24">
+    <section className="grid bg-white md:h-[calc(100dvh-5rem)] md:grid-cols-2">
+      <div className="container flex flex-col justify-between py-12 md:py-20 md:pl-24">
         <div className="">
-          <h2 className="font-aloevera text-6xl font-bold">
+          <h2 className="font-aloevera text-4xl font-bold md:text-6xl">
             Choose the <span className="text-orange-500">Right Mount</span> for
             your TV
           </h2>
@@ -19,10 +19,10 @@ export const FeaturedProduct = () => {
           </p>
         </div>
 
-        <p>Find the Perfect Fit for Your TV</p>
+        <p className="max-md:pt-9">Find the Perfect Fit for Your TV</p>
       </div>
-      <div className="relative flex h-full w-full flex-col justify-between bg-gray-200">
-        <div className="relative z-10 self-end py-12 pr-12">
+      <div className="relative flex h-full w-full flex-col justify-between bg-gray-200 max-md:h-96">
+        <div className="relative z-10 self-end py-4 pr-4 md:py-12 md:pr-12">
           <Badge>Seamlessly Designed for Modern Living</Badge>
         </div>
         <Image
