@@ -22,8 +22,8 @@ export async function Footer() {
     <footer className="mt-auto bg-black text-white">
       <div className="container grid max-w-6xl grid-cols-2 gap-8 py-16">
         <div className="">
-          <Link className="flex items-center invert" href="/">
-            <Logo isWhite />
+          <Link className="flex items-center" href="/">
+            <Logo className="!fill-white !text-white" />
           </Link>
           <p className="py-3 font-light leading-relaxed">
             {footerData.description}
