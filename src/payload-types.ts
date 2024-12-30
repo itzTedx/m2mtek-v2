@@ -129,6 +129,7 @@ export interface Product {
   };
   categories?: (number | Category)[] | null;
   relatedProducts?: (number | Product)[] | null;
+  featured?: boolean | null;
   publishedAt?: string | null;
   populatedAuthors?:
     | {
@@ -438,6 +439,7 @@ export interface ProductsSelect<T extends boolean = true> {
       };
   categories?: T;
   relatedProducts?: T;
+  featured?: T;
   publishedAt?: T;
   populatedAuthors?:
     | T

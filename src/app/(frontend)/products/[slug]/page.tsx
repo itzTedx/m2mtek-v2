@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { cache } from "react";
 
 import { RelatedPosts } from "@/components/related-post";
 import RichText from "@/components/rich-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { getClientSideURL } from "@/lib/get-url";
 import { payload } from "@/lib/payload";
+import { queryPostBySlug } from "@/server/actions";
 import { generateMeta } from "@/utils/generate-meta";
 
 import { ImagePreview } from "./_components/image-preview";
@@ -190,22 +190,6 @@ const Heading = ({ children }: { children: React.ReactNode }) => {
     </h2>
   );
 };
-
-const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
-  const result = await payload.find({
-    collection: "products",
-    limit: 1,
-    depth: 3,
-
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-  });
-
-  return result.docs?.[0] || null;
-});
 
 export async function generateMetadata({
   params: paramsPromise,

@@ -232,6 +232,16 @@ export const Products: CollectionConfig = {
     },
 
     {
+      name: "featured",
+      label: "Mark as featured",
+      type: "checkbox",
+      admin: {
+        position: "sidebar",
+        description: "Display this product on the homepage",
+      },
+    },
+
+    {
       name: "publishedAt",
       type: "date",
       admin: {
