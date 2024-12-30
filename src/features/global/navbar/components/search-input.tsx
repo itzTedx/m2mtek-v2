@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconArrowRight, IconSearch } from "@tabler/icons-react";
@@ -17,6 +17,7 @@ const searchSchema = z.object({
 
 export const SearchInput = () => {
   const searchparams = useSearchParams();
+  const router = useRouter();
 
   const query = searchparams.get("q");
 
@@ -34,6 +35,7 @@ export const SearchInput = () => {
       const searchParams = new URLSearchParams(window.location.search);
       searchParams.set("q", values.query);
       window.history.pushState({}, "", `/search?${searchParams}`);
+      router.push(`/search?${searchParams}`);
     }
   }
 

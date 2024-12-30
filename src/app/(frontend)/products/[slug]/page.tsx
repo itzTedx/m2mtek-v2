@@ -3,13 +3,15 @@ import Link from "next/link";
 
 import { RelatedPosts } from "@/components/related-post";
 import RichText from "@/components/rich-text";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { getClientSideURL } from "@/lib/get-url";
 import { payload } from "@/lib/payload";
 import { queryPostBySlug } from "@/server/actions";
 import { generateMeta } from "@/utils/generate-meta";
 
+import { FeaturesSection } from "./_components/features-section";
+import { Heading } from "./_components/heading";
 import { ImagePreview } from "./_components/image-preview";
+import { ResourcesSection } from "./_components/resources-section";
+import { SpecificationsSection } from "./_components/spec-section";
 
 export async function generateStaticParams() {
   const posts = await payload.find({
@@ -38,8 +40,8 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="container space-y-12 pb-12 pt-16">
-      <header className="grid grid-cols-3 gap-6 pt-12">
-        <div className="col-span-2">
+      <header className="grid gap-6 pt-12 md:grid-cols-3">
+        <div className="md:col-span-2">
           <ImagePreview data={product} />
         </div>
         <div className="space-y-6">
@@ -95,77 +97,11 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
           <Heading>Overview</Heading>
           <RichText data={product.overview} enableGutter={false} />
         </section>
-        {product.features && (
-          <section id="features" className="container scroll-mt-12">
-            <Heading>Features</Heading>
-            <ul className="grid list-inside list-disc grid-cols-2 gap-4">
-              {product.features.map((feature) => (
-                <li key={feature.id}>{feature.title}</li>
-              ))}
-            </ul>
-          </section>
+        {product.features?.length !== 0 && <FeaturesSection data={product} />}
+        {product.specifications?.length !== 0 && (
+          <SpecificationsSection data={product} />
         )}
-        {product.specifications && (
-          <section id="specifications" className="container scroll-mt-12">
-            <Heading>Specifications</Heading>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <Table>
-                <TableBody>
-                  {product.specifications
-                    .slice(0, Math.ceil(product.specifications.length / 2))
-                    .map((spec) => (
-                      <TableRow key={spec.id}>
-                        <TableCell className="w-48">{spec.title}</TableCell>
-                        <TableCell className="bg-white/20 font-medium">
-                          {spec.value}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-              <Table>
-                <TableBody>
-                  {product.specifications
-                    .slice(Math.ceil(product.specifications.length / 2))
-                    .map((spec) => (
-                      <TableRow key={spec.id}>
-                        <TableCell className="w-48">{spec.title}</TableCell>
-                        <TableCell className="bg-white/20 font-medium">
-                          {spec.value}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </div>
-          </section>
-        )}
-        {product.resources && (
-          <section id="resources" className="container scroll-mt-12">
-            <Heading>Resources</Heading>
-            <div>
-              {product.resources.map((res) => {
-                const resourceUrl =
-                  typeof res.document === "object" && res.document !== null
-                    ? res.document.url
-                    : "";
-
-                return (
-                  <div key={res.id}>
-                    <Link
-                      href={`${getClientSideURL()}${resourceUrl}`}
-                      target="_blank"
-                    >
-                      {typeof res.document === "object" && res.document !== null
-                        ? res.document.filename
-                        : ""}
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        )}
+        {product.resources?.length !== 0 && <ResourcesSection data={product} />}
       </div>
 
       {product.relatedProducts && (
@@ -182,14 +118,6 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
     </main>
   );
 }
-
-const Heading = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <h2 className="mb-2 font-aloevera text-2xl font-semibold text-brand-600">
-      {children}
-    </h2>
-  );
-};
 
 export async function generateMetadata({
   params: paramsPromise,
