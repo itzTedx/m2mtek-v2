@@ -10,7 +10,7 @@ export default async function Products() {
   const products = await payload.find({
     collection: "products",
     depth: 1,
-    sort: "createdAt",
+    sort: "-createdAt",
     pagination: false,
     where: {
       _status: {
