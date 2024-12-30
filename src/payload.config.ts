@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
@@ -43,4 +44,9 @@ export default buildConfig({
     ...plugins,
     // storage-adapter-placeholder
   ],
+  email: resendAdapter({
+    defaultFromAddress: "info@zironmedia.com",
+    defaultFromName: "M2MTEK",
+    apiKey: process.env.RESEND_API_KEY || "",
+  }),
 });
