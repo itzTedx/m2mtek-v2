@@ -1,12 +1,12 @@
+import type { CollectionConfig } from "payload";
+
 import { anyone } from "@/features/access/anyone";
 import { authenticated } from "@/features/access/authenticated";
 import { slugField } from "@/features/fields/slug";
-import type { CollectionConfig } from "payload";
-
 
 export const Categories: CollectionConfig = {
   slug: "categories",
-  
+
   access: {
     create: authenticated,
     delete: authenticated,
@@ -15,25 +15,28 @@ export const Categories: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
-    defaultColumns: ['title', 'slug']
-  
+    defaultColumns: ["title", "slug"],
   },
-  
+
   fields: [
     {
       name: "title",
       type: "text",
       required: true,
     },
+    {
+      name: "description",
+      type: "textarea",
+    },
     ...slugField(),
     {
-      name: 'products',
-      type: 'relationship',
-      relationTo: 'products',
+      name: "products",
+      type: "relationship",
+      relationTo: "products",
       hasMany: true,
       admin: {
-        hidden: true
-      }
-    }
+        hidden: true,
+      },
+    },
   ],
 };

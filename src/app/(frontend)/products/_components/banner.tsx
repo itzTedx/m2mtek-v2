@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Banner = () => {
   return (
-    <header className="relative flex h-[45rem] items-end p-28">
+    <header className="relative flex h-[40rem] items-end p-28">
       <div className="relative z-10 max-w-lg bg-white/30 p-6 backdrop-blur-xl">
         <h1 className="font-aloevera text-2xl font-semibold">Our Products</h1>
         <p className="font-medium">

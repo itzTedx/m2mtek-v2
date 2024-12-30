@@ -269,6 +269,7 @@ export interface Document {
 export interface Category {
   id: number;
   title: string;
+  description?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
   products?: (number | Product)[] | null;
@@ -456,6 +457,7 @@ export interface ProductsSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   slug?: T;
   slugLock?: T;
   products?: T;
