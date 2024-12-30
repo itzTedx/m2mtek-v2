@@ -68,7 +68,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
       data.images &&
       data.images.map((image) => (
         <CarouselItem key={image.id} className="w-full cursor-pointer pl-4">
-          <div className="relative aspect-[5/3] overflow-hidden rounded-md bg-white">
+          <div className="relative aspect-square overflow-hidden rounded-md bg-white md:aspect-[5/3]">
             {image.image && (
               <Media resource={image.image} fill imgClassName="object-cover" />
             )}
@@ -85,7 +85,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
         <CarouselItem
           key={image.id}
           className={cn(
-            "relative aspect-square w-full basis-1/5 overflow-hidden rounded-md border-white",
+            "relative aspect-square w-full basis-1/4 overflow-hidden rounded-md border-white md:basis-1/5",
             index === current ? "border-2" : ""
           )}
           onClick={() => handleClick(index)}
@@ -119,12 +119,12 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
     );
   } else {
     return (
-      <div className="">
+      <div>
         <Carousel setApi={setMainApi} className="shrink-0 grow">
           <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
         </Carousel>
         <Carousel setApi={setThumbnailApi} orientation="horizontal">
-          <CarouselContent className="m-1 w-24 gap-3">
+          <CarouselContent className="my-3 h-24 gap-3">
             {thumbnailImages}
           </CarouselContent>
           {current > 3 && <CarouselPrevious />}
