@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export const ExpertiseSection = () => {
   return (
-    <section className="container grid gap-6 md:grid-cols-2 md:pb-28">
+    <section className="container relative grid gap-6 md:grid-cols-2 md:pb-28">
       <ul className="-mt-40 space-y-12 md:-mt-36 md:px-9">
         {EXPERTISE_ITEMS.map((item, index) => (
           <li key={index} className="rounded-xl bg-brand p-10">
@@ -15,7 +15,7 @@ export const ExpertiseSection = () => {
         ))}
       </ul>
 
-      <div className="overflow-x-clip py-12 md:py-20">
+      <div className="sticky top-12 h-fit overflow-x-clip py-12 md:py-20">
         <p className="pb-3 tracking-wide text-accent-700">Our Expertise</p>
         <h3 className="font-aloevera text-5xl font-medium md:text-8xl">
           Solutions <br />

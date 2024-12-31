@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 
 export const WhyUsSection = () => {
   return (
-    <section className="bg-accent-950 text-white">
+    <section className="relative bg-accent-950 text-white">
       <div className="container grid gap-6 py-12 md:grid-cols-2 md:py-28">
-        <div className="">
+        <div className="sticky top-24 h-fit">
           <p className="pb-3 text-accent-600">Why Choose M2Mtek?</p>
           <h2 className="font-aloevera text-5xl font-medium md:text-8xl">
             Core Values
