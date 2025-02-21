@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { IconArrowNarrowRight } from "@tabler/icons-react";
@@ -11,13 +10,14 @@ export const Hero = () => {
   return (
     <div className="h-dvh">
       <div className="absolute aspect-video h-dvh w-full">
-        <Image
+        <div className="absolute h-full w-full bg-gray-200"></div>
+        {/* <Image
           src="/images/hero.jpg"
           alt=""
           fill
           className="object-cover"
           priority
-        />
+        /> */}
       </div>
       <div className="container relative z-10 grid h-full items-center md:grid-cols-2">
         <div className="order-2 mb-40 self-end px-6 sm:order-1">
