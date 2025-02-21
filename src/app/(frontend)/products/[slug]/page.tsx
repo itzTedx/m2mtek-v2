@@ -72,22 +72,22 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
       </header>
       <div className="relative space-y-12">
         <ul className="container sticky top-16 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
-          {product.overview && (
+          {product.overview.root.children && (
             <li>
               <Link href="#overview">Overview</Link>
             </li>
           )}
-          {product.features && (
+          {product.features && product.features.length > 0 && (
             <li>
               <Link href="#features">Features</Link>
             </li>
           )}
-          {product.specifications && (
+          {product.specifications && product.specifications.length > 0 && (
             <li>
               <Link href="#specifications">Specifications</Link>
             </li>
           )}
-          {product.resources && (
+          {product.resources && product.resources.length > 0 && (
             <li>
               <Link href="#resources">Resources</Link>
             </li>
@@ -104,7 +104,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         {product.resources?.length !== 0 && <ResourcesSection data={product} />}
       </div>
 
-      {product.relatedProducts && (
+      {product.relatedProducts && product.relatedProducts.length > 0 && (
         <section id="related" className="container scroll-mt-12">
           <Heading>Products related to this</Heading>
 
