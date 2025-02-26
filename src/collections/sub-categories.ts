@@ -4,8 +4,8 @@ import { anyone } from "@/features/access/anyone";
 import { authenticated } from "@/features/access/authenticated";
 import { slugField } from "@/features/fields/slug";
 
-export const Categories: CollectionConfig = {
-  slug: "categories",
+export const Subcategories: CollectionConfig = {
+  slug: "sub-categories",
 
   access: {
     create: authenticated,
@@ -14,8 +14,9 @@ export const Categories: CollectionConfig = {
     update: authenticated,
   },
   admin: {
+    hidden: true,
     useAsTitle: "title",
-    defaultColumns: ["title", "subcategories", "slug"],
+    defaultColumns: ["title", "slug"],
   },
 
   fields: [
@@ -29,12 +30,6 @@ export const Categories: CollectionConfig = {
       type: "textarea",
     },
 
-    {
-      name: "subcategories",
-      type: "relationship",
-      relationTo: "sub-categories",
-      hasMany: true,
-    },
     ...slugField(),
     {
       name: "products",

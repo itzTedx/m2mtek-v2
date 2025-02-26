@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     products: Product;
     categories: Category;
+    'sub-categories': SubCategory;
     media: Media;
     users: User;
     documents: Document;
@@ -25,6 +26,7 @@ export interface Config {
   collectionsSelect: {
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    'sub-categories': SubCategoriesSelect<false> | SubCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
@@ -37,12 +39,10 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
-    navbar: Navbar;
     cta: Cta;
     footer: Footer;
   };
   globalsSelect: {
-    navbar: NavbarSelect<false> | NavbarSelect<true>;
     cta: CtaSelect<false> | CtaSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
@@ -271,6 +271,21 @@ export interface Category {
   id: number;
   title: string;
   description?: string | null;
+  subcategories?: (number | SubCategory)[] | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  products?: (number | Product)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sub-categories".
+ */
+export interface SubCategory {
+  id: number;
+  title: string;
+  description?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
   products?: (number | Product)[] | null;
@@ -337,6 +352,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'sub-categories';
+        value: number | SubCategory;
       } | null)
     | ({
         relationTo: 'media';
@@ -458,6 +477,20 @@ export interface ProductsSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  subcategories?: T;
+  slug?: T;
+  slugLock?: T;
+  products?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sub-categories_select".
+ */
+export interface SubCategoriesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
@@ -662,22 +695,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navbar".
- */
-export interface Navbar {
-  id: number;
-  navItems?:
-    | {
-        label?: string | null;
-        url?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cta".
  */
 export interface Cta {
@@ -712,22 +729,6 @@ export interface Footer {
   tiktok?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navbar_select".
- */
-export interface NavbarSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

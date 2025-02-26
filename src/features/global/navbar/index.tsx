@@ -1,16 +1,19 @@
-import { getCachedGlobal } from "@/lib/get-globals";
-import { Navbar as NavbarType } from "@/payload-types";
+import { payload } from "@/lib/payload";
 
 import { DesktopNavbar } from "./components/desktop-navbar";
-import { MobileNavbar } from "./components/mobile-navbar";
 
 export const Navbar = async () => {
-  const navData: NavbarType = await getCachedGlobal("navbar", 1)();
+  const { docs } = await payload.find({
+    collection: "categories",
+    depth: 1,
+    sort: "createdAt",
+    pagination: false,
+  });
 
   return (
     <>
-      <DesktopNavbar navData={navData} />
-      <MobileNavbar navData={navData} />
+      <DesktopNavbar categories={docs} />
+      {/* <MobileNavbar navData={navData} /> */}
     </>
   );
 };

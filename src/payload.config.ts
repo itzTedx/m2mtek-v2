@@ -12,9 +12,9 @@ import { Users } from "./collections/Users";
 import { Categories } from "./collections/categories";
 import { Documents } from "./collections/documents";
 import { Products } from "./collections/products";
+import { Subcategories } from "./collections/sub-categories";
 import { Cta } from "./features/global/cta/config";
 import { Footer } from "./features/global/footer/config";
-import { Navbar } from "./features/global/navbar/config";
 import { plugins } from "./plugins";
 
 const filename = fileURLToPath(import.meta.url);
@@ -27,8 +27,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Products, Categories, Media, Users, Documents],
-  globals: [Navbar, Cta, Footer],
+  collections: [Products, Categories, Subcategories, Media, Users, Documents],
+  globals: [Cta, Footer],
+  // globals: [Navbar, Cta, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
