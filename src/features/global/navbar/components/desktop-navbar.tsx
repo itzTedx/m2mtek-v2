@@ -1,17 +1,12 @@
 import Link from "next/link";
-import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  Suspense,
-  forwardRef,
-} from "react";
+import { Suspense } from "react";
 
 import { Logo } from "@/components/assets/logo";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
@@ -19,72 +14,55 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Category } from "@/payload-types";
 
+import { MegaMenu } from "./mega-menu";
 import { SearchInput } from "./search-input";
 
 export const DesktopNavbar = ({ categories }: { categories: Category[] }) => {
-  // const navItems = navData?.navItems || [];
   return (
-    <NavigationMenu className="fixed left-1/2 top-3 z-50 hidden -translate-x-1/2 justify-between rounded-md bg-white/60 px-3 backdrop-blur-xl md:flex">
-      <Link href="/" className="flex items-center gap-3 p-3">
-        <Logo />
-        <Separator orientation="vertical" className="max-sm:hidden" />
-        {/* <Separator orientation="vertical" className="max-sm:hidden" />
-        <p className="text-xs max-sm:hidden">
-          Bridging
-          <br />
-          Technologies
-        </p> */}
-      </Link>
+    <header className="container fixed left-1/2 top-3 z-50 hidden -translate-x-1/2 items-center justify-between rounded-lg bg-white/80 px-0 py-2 backdrop-blur-lg md:flex">
+      <NavigationMenu className="flex items-center gap-3 px-3">
+        <Link href="/" className="h-auto py-3">
+          <Logo />
+        </Link>
 
-      <NavigationMenuList className="flex items-center gap-6 px-6 py-3 font-medium">
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent">
-            Products
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {categories.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.slug!}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
+        <Separator
+          orientation="vertical"
+          className="h-6 bg-muted max-sm:hidden"
+        />
+        <NavigationMenuList asChild>
+          <menu className="flex items-center justify-between gap-2">
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <MegaMenu data={categories} />
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Suspense>
+                <SearchInput />
+              </Suspense>
+            </NavigationMenuItem>
+          </menu>
+        </NavigationMenuList>
+      </NavigationMenu>
 
-      <Suspense>
-        <SearchInput />
-      </Suspense>
-    </NavigationMenu>
+      <nav className="flex items-center px-3">
+        <ul className="flex items-center gap-4">
+          <li>
+            <Link href="/about" className={cn("hover:text-sky-700")}>
+              About us
+            </Link>
+          </li>
+          <li>
+            <Button
+              asChild
+              className="h-10 bg-sky-500 text-base hover:bg-sky-600"
+            >
+              <Link href="/contact">Contact</Link>
+            </Button>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
-
-const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
-  ({ className, title, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className
-            )}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  }
-);
-ListItem.displayName = "ListItem";
