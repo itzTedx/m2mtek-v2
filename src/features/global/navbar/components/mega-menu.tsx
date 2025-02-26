@@ -4,13 +4,13 @@ import { Category, SubCategory } from "@/payload-types";
 
 export const MegaMenu = ({ data }: { data: Category[] }) => {
   return (
-    <div className="relative w-full md:w-[76rem] lg:w-[86rem]">
-      <div className="columns-5 gap-3">
+    <div className="relative w-full p-3 md:w-[76rem] lg:w-[86rem]">
+      <div className="columns-4 gap-3">
         {data.map((category) => (
-          <div key={category.id} className="inline-block p-2 md:mt-3">
+          <div key={category.id} className="inline-block md:mt-3">
             <Link
               href="/"
-              className="rounded-md border-b px-1 py-1.5 text-base transition-colors"
+              className="rounded-md border-b py-1.5 text-base transition-colors"
             >
               {category.title}
             </Link>
