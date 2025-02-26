@@ -11,9 +11,9 @@ export const Navbar = async () => {
   });
 
   return (
-    <>
+    <div className="group">
       <DesktopNavbar categories={docs} />
       {/* <MobileNavbar navData={navData} /> */}
-    </>
+    </div>
   );
 };

@@ -19,7 +19,7 @@ import { SearchInput } from "./search-input";
 
 export const DesktopNavbar = ({ categories }: { categories: Category[] }) => {
   return (
-    <header className="container fixed left-1/2 top-3 z-50 hidden -translate-x-1/2 items-center justify-between rounded-lg bg-white/80 px-0 py-2 backdrop-blur-lg md:flex">
+    <header className="container fixed left-1/2 top-3 z-50 hidden -translate-x-1/2 items-center justify-between rounded-lg bg-white/80 px-0 py-2 backdrop-blur-lg transition-colors group-hover:bg-white md:flex">
       <NavigationMenu className="flex items-center gap-3 px-3">
         <Link href="/" className="h-auto py-3">
           <Logo />

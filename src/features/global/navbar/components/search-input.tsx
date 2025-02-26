@@ -15,6 +15,9 @@ const searchSchema = z.object({
   query: z.string().min(1),
 });
 
+const RECENT_SEARCHES_KEY = "recent_searches";
+const MAX_RECENT_SEARCHES = 10;
+
 export const SearchInput = () => {
   const searchparams = useSearchParams();
   const router = useRouter();
@@ -24,9 +27,20 @@ export const SearchInput = () => {
   const form = useForm<z.infer<typeof searchSchema>>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
-      query: query || undefined,
+      query: query || "",
     },
   });
+
+  const addToRecentSearches = (query: string) => {
+    const recentSearches = JSON.parse(
+      localStorage.getItem(RECENT_SEARCHES_KEY) || "[]"
+    );
+    const updatedSearches = [
+      query,
+      ...recentSearches.filter((item: string) => item !== query),
+    ].slice(0, MAX_RECENT_SEARCHES);
+    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updatedSearches));
+  };
 
   function onSubmit(values: z.infer<typeof searchSchema>) {
     const validation = searchSchema.safeParse(values);
@@ -34,6 +48,7 @@ export const SearchInput = () => {
     if (validation.success) {
       const searchParams = new URLSearchParams(window.location.search);
       searchParams.set("q", values.query);
+      addToRecentSearches(values.query);
       window.history.pushState({}, "", `/search?${searchParams}`);
       router.push(`/search?${searchParams}`);
     }
