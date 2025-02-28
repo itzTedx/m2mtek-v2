@@ -1,8 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { Media } from "@/components/Media";
 import {
   Carousel,
   CarouselApi,
@@ -14,6 +14,16 @@ import {
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import { Product } from "@/payload-types";
+
+const Media = dynamic(
+  () => import("@/components/Media").then((mod) => mod.Media),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-full w-full animate-pulse rounded-md bg-gray-200" />
+    ),
+  }
+);
 
 interface ImagePreviewProps {
   data: Product;
@@ -68,7 +78,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
       data.images &&
       data.images.map((image) => (
         <CarouselItem key={image.id} className="w-full cursor-pointer pl-4">
-          <div className="relative aspect-square overflow-hidden rounded-md bg-white md:aspect-[5/3]">
+          <div className="relative aspect-square overflow-hidden rounded-md bg-white">
             {image.image && (
               <Media resource={image.image} fill imgClassName="object-cover" />
             )}

@@ -127,7 +127,7 @@ export interface Product {
     image?: (number | null) | Media;
     description?: string | null;
   };
-  categories?: (number | Category)[] | null;
+  categories?: (number | SubCategory)[] | null;
   relatedProducts?: (number | Product)[] | null;
   featured?: boolean | null;
   publishedAt?: string | null;
@@ -265,6 +265,20 @@ export interface Document {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sub-categories".
+ */
+export interface SubCategory {
+  id: number;
+  title: string;
+  description?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  products?: (number | Product)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -280,26 +294,11 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sub-categories".
- */
-export interface SubCategory {
-  id: number;
-  title: string;
-  description?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  products?: (number | Product)[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: number;
   name?: string | null;
-  avatar?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -607,7 +606,6 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
-  avatar?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+import ExpandableCard from "@/components/expandable-card";
 import { RelatedPosts } from "@/components/related-post";
 import RichText from "@/components/rich-text";
 import { payload } from "@/lib/payload";
@@ -40,10 +41,8 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="container space-y-12 pb-12 pt-16">
-      <header className="grid gap-6 pt-12 md:grid-cols-3">
-        <div className="md:col-span-2">
-          <ImagePreview data={product} />
-        </div>
+      <header className="grid gap-6 pt-12 md:grid-cols-2 md:gap-12">
+        <ImagePreview data={product} />
         <div className="space-y-6">
           <div className="">
             <h1 className="text-2xl font-bold">{product.title}</h1>
@@ -67,7 +66,8 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
               <p className="font-semibold">50”-105”</p>
             </li>
           </ul>
-          <p>{product.description}</p>
+
+          <ExpandableCard>{product.description}</ExpandableCard>
         </div>
       </header>
       <div className="relative space-y-12">
