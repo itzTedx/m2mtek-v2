@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+import Autoplay from "embla-carousel-autoplay";
+
 import {
   Carousel,
   CarouselApi,
@@ -95,7 +97,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
         <CarouselItem
           key={image.id}
           className={cn(
-            "relative aspect-square w-full basis-1/4 overflow-hidden rounded-md border-white md:basis-1/5",
+            "relative aspect-square w-full basis-1/4 overflow-hidden rounded-md border-white bg-white md:basis-1/5",
             index === current ? "border-2" : ""
           )}
           onClick={() => handleClick(index)}
@@ -122,7 +124,15 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
           {current > 3 && <CarouselPrevious />}
           {current > 3 && <CarouselNext />}
         </Carousel>
-        <Carousel setApi={setMainApi} className="shrink-0 grow">
+        <Carousel
+          setApi={setMainApi}
+          className="shrink-0 grow"
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+        >
           <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
         </Carousel>
       </div>
@@ -130,7 +140,15 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
   } else {
     return (
       <div>
-        <Carousel setApi={setMainApi} className="shrink-0 grow">
+        <Carousel
+          setApi={setMainApi}
+          className="shrink-0 grow"
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+        >
           <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
         </Carousel>
         <Carousel setApi={setThumbnailApi} orientation="horizontal">
