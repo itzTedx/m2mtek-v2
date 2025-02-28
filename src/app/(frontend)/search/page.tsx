@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { payload } from "@/lib/payload";
 
-import { ProductCard } from "../products/_components/product-card";
+import { ProductCard } from "../product/_components/product-card";
 import SearchResults from "./results";
 
 type Args = {

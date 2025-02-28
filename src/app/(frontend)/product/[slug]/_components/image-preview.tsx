@@ -1,8 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { Media } from "@/components/Media";
+import Autoplay from "embla-carousel-autoplay";
+
 import {
   Carousel,
   CarouselApi,
@@ -15,11 +17,22 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import { Product } from "@/payload-types";
 
+const Media = dynamic(
+  () => import("@/components/Media").then((mod) => mod.Media),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-full w-full animate-pulse rounded-md bg-gray-200" />
+    ),
+  }
+);
+
 interface ImagePreviewProps {
   data: Product;
+  autoplayDelay?: number;
 }
 
-export const ImagePreview = ({ data }: ImagePreviewProps) => {
+export const ImagePreview = ({ data, autoplayDelay }: ImagePreviewProps) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -68,7 +81,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
       data.images &&
       data.images.map((image) => (
         <CarouselItem key={image.id} className="w-full cursor-pointer pl-4">
-          <div className="relative aspect-square overflow-hidden rounded-md bg-white md:aspect-[5/3]">
+          <div className="relative aspect-square overflow-hidden rounded-md bg-white">
             {image.image && (
               <Media resource={image.image} fill imgClassName="object-cover" />
             )}
@@ -85,7 +98,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
         <CarouselItem
           key={image.id}
           className={cn(
-            "relative aspect-square w-full basis-1/4 overflow-hidden rounded-md border-white md:basis-1/5",
+            "relative aspect-square w-full basis-1/4 overflow-hidden rounded-md border-white bg-white md:basis-1/5",
             index === current ? "border-2" : ""
           )}
           onClick={() => handleClick(index)}
@@ -104,7 +117,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
 
   if (isDesktop) {
     return (
-      <div className="flex gap-6">
+      <div className="flex gap-4">
         <Carousel setApi={setThumbnailApi} orientation="vertical">
           <CarouselContent className="m-1 w-24 gap-3">
             {thumbnailImages}
@@ -112,7 +125,15 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
           {current > 3 && <CarouselPrevious />}
           {current > 3 && <CarouselNext />}
         </Carousel>
-        <Carousel setApi={setMainApi} className="shrink-0 grow">
+        <Carousel
+          setApi={setMainApi}
+          className="shrink-0 grow"
+          plugins={[
+            Autoplay({
+              delay: autoplayDelay || 2000,
+            }),
+          ]}
+        >
           <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
         </Carousel>
       </div>
@@ -120,7 +141,15 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
   } else {
     return (
       <div>
-        <Carousel setApi={setMainApi} className="shrink-0 grow">
+        <Carousel
+          setApi={setMainApi}
+          className="shrink-0 grow"
+          plugins={[
+            Autoplay({
+              delay: autoplayDelay || 2000,
+            }),
+          ]}
+        >
           <CarouselContent className="-ml-4">{mainImage}</CarouselContent>
         </Carousel>
         <Carousel setApi={setThumbnailApi} orientation="horizontal">

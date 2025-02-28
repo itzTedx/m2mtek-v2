@@ -1,7 +1,6 @@
-import { authenticated } from "@/features/access/authenticated";
 import type { CollectionConfig } from "payload";
 
-
+import { authenticated } from "@/features/access/authenticated";
 
 export const Users: CollectionConfig = {
   slug: "users",
@@ -22,6 +21,16 @@ export const Users: CollectionConfig = {
       name: "name",
       type: "text",
     },
+    // {
+    //   name: "avatar",
+    //   type: "relationship",
+    //   relationTo: "media",
+    //   admin: {
+    //     components: {
+    //       Cell: "/src/collections/users/avatar",
+    //     },
+    //   },
+    // },
   ],
   timestamps: true,
 };

@@ -126,8 +126,9 @@ export interface Product {
     title?: string | null;
     image?: (number | null) | Media;
     description?: string | null;
+    keyword?: string | null;
   };
-  categories?: (number | Category)[] | null;
+  categories?: (number | SubCategory)[] | null;
   relatedProducts?: (number | Product)[] | null;
   featured?: boolean | null;
   publishedAt?: string | null;
@@ -265,13 +266,12 @@ export interface Document {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
+ * via the `definition` "sub-categories".
  */
-export interface Category {
+export interface SubCategory {
   id: number;
   title: string;
   description?: string | null;
-  subcategories?: (number | SubCategory)[] | null;
   slug?: string | null;
   slugLock?: boolean | null;
   products?: (number | Product)[] | null;
@@ -280,12 +280,13 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sub-categories".
+ * via the `definition` "categories".
  */
-export interface SubCategory {
+export interface Category {
   id: number;
   title: string;
   description?: string | null;
+  subcategories?: (number | SubCategory)[] | null;
   slug?: string | null;
   slugLock?: boolean | null;
   products?: (number | Product)[] | null;
@@ -455,6 +456,7 @@ export interface ProductsSelect<T extends boolean = true> {
         title?: T;
         image?: T;
         description?: T;
+        keyword?: T;
       };
   categories?: T;
   relatedProducts?: T;

@@ -24,6 +24,14 @@ export const plugins: Plugin[] = [
   seoPlugin({
     generateTitle,
     generateURL,
+
+    fields: ({ defaultFields }) => [
+      ...defaultFields,
+      {
+        name: "keyword",
+        type: "text",
+      },
+    ],
   }),
   uploadthingStorage({
     collections: {

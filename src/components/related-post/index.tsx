@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { ProductCard } from "@/app/(frontend)/products/_components/product-card";
+import { ProductCard } from "@/app/(frontend)/product/_components/product-card";
 import { payload } from "@/lib/payload";
 import { Product } from "@/payload-types";
 

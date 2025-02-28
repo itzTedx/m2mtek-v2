@@ -10,7 +10,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const href = `/products/${product.slug}`;
+  const href = `/product/${product.slug}`;
 
   return (
     <Link

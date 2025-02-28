@@ -17,5 +17,6 @@
     "Tiktok",
     "trivago",
     "uploadthing"
-  ]
+  ],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }

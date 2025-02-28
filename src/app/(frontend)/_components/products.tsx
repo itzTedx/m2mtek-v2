@@ -1,6 +1,6 @@
 import { queryFeaturedProducts } from "@/server/actions";
 
-import { ProductCard } from "../products/_components/product-card";
+import { ProductCard } from "../product/_components/product-card";
 
 export const Products = async () => {
   const products = await queryFeaturedProducts();

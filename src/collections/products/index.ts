@@ -100,7 +100,7 @@ export const Products: CollectionConfig = {
                   ];
                 },
               }),
-              label: false,
+              label: "Overview",
               required: true,
             },
             {
@@ -192,6 +192,12 @@ export const Products: CollectionConfig = {
             }),
 
             MetaDescriptionField({}),
+            {
+              type: "text",
+              name: "keyword",
+              label: "Keyword",
+            },
+
             PreviewField({
               // if the `generateUrl` function is configured
               hasGenerateFn: true,
@@ -212,7 +218,7 @@ export const Products: CollectionConfig = {
         position: "sidebar",
       },
       hasMany: true,
-      relationTo: "categories",
+      relationTo: "sub-categories",
     },
     {
       name: "relatedProducts",
