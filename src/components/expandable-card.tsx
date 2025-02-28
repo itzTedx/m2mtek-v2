@@ -16,8 +16,9 @@ export default function ExpandableCard({
   const contentRef = useRef<HTMLParagraphElement>(null);
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="relative overflow-hidden">
+        <h2 className="text-sm text-gray-700">Description:</h2>
         <motion.div
           animate={{ height: isExpanded ? "auto" : "10rem" }}
           transition={{
@@ -26,9 +27,7 @@ export default function ExpandableCard({
           }}
           className="relative"
         >
-          <p ref={contentRef} className="text-gray-700">
-            {children}
-          </p>
+          <p ref={contentRef}>{children}</p>
         </motion.div>
 
         {!isExpanded && (

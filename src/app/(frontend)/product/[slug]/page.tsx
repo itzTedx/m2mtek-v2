@@ -41,10 +41,10 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="container space-y-12 pb-12 pt-16">
-      <header className="grid gap-6 pt-12 md:grid-cols-2 md:gap-12">
-        <ImagePreview data={product} />
-        <div className="space-y-6">
-          <div className="">
+      <header className="grid gap-4 pt-12 md:grid-cols-2">
+        <ImagePreview data={product} autoplayDelay={3000} />
+        <div className="space-y-6 md:pl-12">
+          <div>
             <h1 className="text-2xl font-bold">{product.title}</h1>
             {product.sku && <p className="text-gray-700">{product.sku}</p>}
           </div>
@@ -71,7 +71,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         </div>
       </header>
       <div className="relative space-y-12">
-        <ul className="container sticky top-16 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
+        <ul className="container sticky top-[calc(5rem+.25em)] z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
           {product.overview.root.children && (
             <li>
               <Link href="#overview">Overview</Link>

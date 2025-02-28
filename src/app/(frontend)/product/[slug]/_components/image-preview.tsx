@@ -29,9 +29,10 @@ const Media = dynamic(
 
 interface ImagePreviewProps {
   data: Product;
+  autoplayDelay?: number;
 }
 
-export const ImagePreview = ({ data }: ImagePreviewProps) => {
+export const ImagePreview = ({ data, autoplayDelay }: ImagePreviewProps) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -116,7 +117,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
 
   if (isDesktop) {
     return (
-      <div className="flex gap-6">
+      <div className="flex gap-4">
         <Carousel setApi={setThumbnailApi} orientation="vertical">
           <CarouselContent className="m-1 w-24 gap-3">
             {thumbnailImages}
@@ -129,7 +130,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
           className="shrink-0 grow"
           plugins={[
             Autoplay({
-              delay: 2000,
+              delay: autoplayDelay || 2000,
             }),
           ]}
         >
@@ -145,7 +146,7 @@ export const ImagePreview = ({ data }: ImagePreviewProps) => {
           className="shrink-0 grow"
           plugins={[
             Autoplay({
-              delay: 2000,
+              delay: autoplayDelay || 2000,
             }),
           ]}
         >

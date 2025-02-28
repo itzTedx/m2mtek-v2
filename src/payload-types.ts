@@ -126,6 +126,7 @@ export interface Product {
     title?: string | null;
     image?: (number | null) | Media;
     description?: string | null;
+    keyword?: string | null;
   };
   categories?: (number | SubCategory)[] | null;
   relatedProducts?: (number | Product)[] | null;
@@ -455,6 +456,7 @@ export interface ProductsSelect<T extends boolean = true> {
         title?: T;
         image?: T;
         description?: T;
+        keyword?: T;
       };
   categories?: T;
   relatedProducts?: T;

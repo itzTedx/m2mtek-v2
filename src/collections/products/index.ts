@@ -192,6 +192,12 @@ export const Products: CollectionConfig = {
             }),
 
             MetaDescriptionField({}),
+            {
+              type: "text",
+              name: "keyword",
+              label: "Keyword",
+            },
+
             PreviewField({
               // if the `generateUrl` function is configured
               hasGenerateFn: true,
