@@ -71,7 +71,7 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         </div>
       </header>
       <div className="relative space-y-12">
-        <ul className="container sticky top-[calc(5rem+.25em)] z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
+        <ul className="container sticky top-20 z-10 flex w-full items-center gap-6 border-b border-black/50 bg-background py-3">
           {product.overview.root.children && (
             <li>
               <Link href="#overview">Overview</Link>
