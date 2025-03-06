@@ -5,16 +5,16 @@ import { Category, SubCategory } from "@/payload-types";
 export const MegaMenu = ({ data }: { data: Category[] }) => {
   return (
     <div className="relative w-full p-3 md:w-[76rem] lg:w-[86rem]">
-      <div className="columns-4 gap-3">
+      <div className="columns-4 gap-6">
         {data.map((category) => (
           <div key={category.id} className="inline-block md:mt-3">
             <Link
               href="/"
-              className="rounded-md border-b py-1.5 text-base transition-colors"
+              className="rounded-md border-b px-1 py-1.5 text-base transition-colors"
             >
               {category.title}
             </Link>
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col gap-1 pt-2">
               {category.subcategories
                 ?.filter(
                   (sub): sub is SubCategory =>
