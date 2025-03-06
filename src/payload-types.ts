@@ -286,6 +286,7 @@ export interface Category {
   id: number;
   title: string;
   description?: string | null;
+  banner?: (number | null) | Media;
   subcategories?: (number | SubCategory)[] | null;
   slug?: string | null;
   slugLock?: boolean | null;
@@ -481,6 +482,7 @@ export interface ProductsSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  banner?: T;
   subcategories?: T;
   slug?: T;
   slugLock?: T;

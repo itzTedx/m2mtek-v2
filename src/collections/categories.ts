@@ -30,6 +30,11 @@ export const Categories: CollectionConfig = {
     },
 
     {
+      name: "banner",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "subcategories",
       type: "relationship",
       relationTo: "sub-categories",
