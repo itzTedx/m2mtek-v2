@@ -1,6 +1,7 @@
 import { payload } from "@/lib/payload";
 
 import { DesktopNavbar } from "./components/desktop-navbar";
+import { MobileNavbar } from "./components/mobile-navbar";
 
 export const Navbar = async () => {
   const { docs } = await payload.find({
@@ -13,7 +14,7 @@ export const Navbar = async () => {
   return (
     <div className="group">
       <DesktopNavbar categories={docs} />
-      {/* <MobileNavbar navData={navData} /> */}
+      <MobileNavbar categories={docs} />
     </div>
   );
 };
