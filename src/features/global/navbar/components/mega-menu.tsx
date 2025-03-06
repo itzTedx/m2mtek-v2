@@ -9,7 +9,7 @@ export const MegaMenu = ({ data }: { data: Category[] }) => {
         {data.map((category) => (
           <div key={category.id} className="inline-block md:mt-3">
             <Link
-              href="/"
+              href={category.slug ?? "/"}
               className="rounded-md border-b px-1 py-1.5 text-base transition-colors"
             >
               {category.title}
