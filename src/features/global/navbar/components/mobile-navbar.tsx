@@ -3,6 +3,7 @@ import Link from "next/link";
 import { IconMenu3 } from "@tabler/icons-react";
 
 import { Logo } from "@/components/assets/logo";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
@@ -35,54 +36,56 @@ export const MobileNavbar = ({ categories }: { categories: Category[] }) => {
               </SheetDescription>
             </SheetHeader>
 
-            <Separator />
-            <nav>
-              <ul className="flex flex-col gap-6 py-3 font-medium">
-                {categories.map((nav) => (
-                  <li key={nav.id}>
+            <Separator className="mt-3 bg-muted-foreground" />
+            <ScrollArea className="h-full w-full">
+              <nav className="pb-6">
+                <ul className="flex flex-col gap-6 py-3 font-medium">
+                  {categories.map((nav) => (
+                    <li key={nav.id}>
+                      <SheetClose asChild>
+                        <Link href={nav.slug || "/"} className="py-6">
+                          {nav.title}
+                        </Link>
+                      </SheetClose>
+                      <ul className="flex flex-col gap-1.5 pt-2">
+                        {nav.subcategories
+                          ?.filter(
+                            (sub): sub is SubCategory =>
+                              typeof sub === "object" &&
+                              sub !== null &&
+                              "id" in sub
+                          )
+                          .map((sub) => (
+                            <li key={sub.id}>
+                              <Link
+                                href={sub.slug!}
+                                className="block p-1 text-sm font-medium transition-colors hover:bg-gray-100"
+                              >
+                                <span>{sub.title}</span>
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    </li>
+                  ))}
+                  <li>
                     <SheetClose asChild>
-                      <Link href={nav.slug || "/"} className="py-6">
-                        {nav.title}
-                      </Link>
+                      <Link href="/">Home</Link>
                     </SheetClose>
-                    <ul className="flex flex-col gap-1.5 pt-2">
-                      {nav.subcategories
-                        ?.filter(
-                          (sub): sub is SubCategory =>
-                            typeof sub === "object" &&
-                            sub !== null &&
-                            "id" in sub
-                        )
-                        .map((sub) => (
-                          <li key={sub.id}>
-                            <Link
-                              href={sub.slug!}
-                              className="block p-1 text-sm font-medium transition-colors hover:bg-gray-100"
-                            >
-                              <span>{sub.title}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      <li>
-                        <SheetClose asChild>
-                          <Link href="/">Home</Link>
-                        </SheetClose>
-                      </li>
-                      <li>
-                        <SheetClose asChild>
-                          <Link href="/about">About</Link>
-                        </SheetClose>
-                      </li>
-                      <li>
-                        <SheetClose asChild>
-                          <Link href="/contact">Contact</Link>
-                        </SheetClose>
-                      </li>
-                    </ul>
                   </li>
-                ))}
-              </ul>
-            </nav>
+                  <li>
+                    <SheetClose asChild>
+                      <Link href="/about">About</Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link href="/contact">Contact</Link>
+                    </SheetClose>
+                  </li>
+                </ul>
+              </nav>
+            </ScrollArea>
           </SheetContent>
         </Sheet>
       </div>

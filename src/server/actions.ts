@@ -2,6 +2,36 @@ import { cache } from "react";
 
 import { payload } from "@/lib/payload";
 
+export const querySubcategories = cache(async ({ slug }: { slug: string }) => {
+  const result = await payload.find({
+    collection: "sub-categories",
+    depth: 3,
+    limit: 10000,
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  });
+
+  return result.docs || null;
+});
+
+export const queryCategories = cache(async ({ slug }: { slug: string }) => {
+  const result = await payload.find({
+    collection: "categories",
+    depth: 3,
+    limit: 10000,
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  });
+
+  return result.docs || null;
+});
+
 export const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
     collection: "products",
