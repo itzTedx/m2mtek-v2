@@ -212,7 +212,7 @@ export const Products: CollectionConfig = {
     },
 
     {
-      name: "categories",
+      name: "subcategories",
       type: "relationship",
       admin: {
         position: "sidebar",
