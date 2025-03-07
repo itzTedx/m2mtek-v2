@@ -128,7 +128,7 @@ export interface Product {
     description?: string | null;
     keyword?: string | null;
   };
-  categories?: (number | SubCategory)[] | null;
+  subcategories?: (number | null) | SubCategory;
   relatedProducts?: (number | Product)[] | null;
   featured?: boolean | null;
   publishedAt?: string | null;
@@ -290,7 +290,6 @@ export interface Category {
   subcategories?: (number | SubCategory)[] | null;
   slug?: string | null;
   slugLock?: boolean | null;
-  products?: (number | Product)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -459,7 +458,7 @@ export interface ProductsSelect<T extends boolean = true> {
         description?: T;
         keyword?: T;
       };
-  categories?: T;
+  subcategories?: T;
   relatedProducts?: T;
   featured?: T;
   publishedAt?: T;
@@ -486,7 +485,6 @@ export interface CategoriesSelect<T extends boolean = true> {
   subcategories?: T;
   slug?: T;
   slugLock?: T;
-  products?: T;
   updatedAt?: T;
   createdAt?: T;
 }

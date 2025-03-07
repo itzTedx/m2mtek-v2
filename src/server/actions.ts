@@ -48,20 +48,23 @@ export const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   return result.docs?.[0] || null;
 });
 
-export const queryProducts = cache(async () => {
-  const result = await payload.find({
+export const queryProducts = cache(async (category: number) => {
+  const products = await payload.find({
     collection: "products",
-    limit: 10000,
     depth: 1,
     sort: "-createdAt",
+    pagination: false,
     where: {
       _status: {
         equals: "published",
       },
+      subcategories: {
+        contains: category,
+      },
     },
   });
 
-  return result.docs || null;
+  if (products.docs.length === 0) return null;
 });
 
 export const queryFeaturedProducts = cache(async () => {

@@ -23,7 +23,7 @@ export const MegaMenu = ({ data }: { data: Category[] }) => {
                 .map((sub) => (
                   <li key={sub.id}>
                     <Link
-                      href={sub.slug!}
+                      href={`/${category.slug}/${sub.slug}`}
                       className="block p-1 text-sm font-medium transition-colors hover:bg-gray-100"
                     >
                       <span>{sub.title}</span>

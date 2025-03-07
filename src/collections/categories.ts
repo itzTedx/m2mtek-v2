@@ -41,14 +41,5 @@ export const Categories: CollectionConfig = {
       hasMany: true,
     },
     ...slugField(),
-    {
-      name: "products",
-      type: "relationship",
-      relationTo: "products",
-      hasMany: true,
-      admin: {
-        hidden: true,
-      },
-    },
   ],
 };
