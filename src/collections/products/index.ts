@@ -217,7 +217,7 @@ export const Products: CollectionConfig = {
       admin: {
         position: "sidebar",
       },
-      hasMany: true,
+
       relationTo: "sub-categories",
     },
     {

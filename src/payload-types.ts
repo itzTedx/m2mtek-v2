@@ -128,7 +128,7 @@ export interface Product {
     description?: string | null;
     keyword?: string | null;
   };
-  categories?: (number | SubCategory)[] | null;
+  categories?: (number | null) | SubCategory;
   relatedProducts?: (number | Product)[] | null;
   featured?: boolean | null;
   publishedAt?: string | null;
