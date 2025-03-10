@@ -68,6 +68,7 @@ export const Products: CollectionConfig = {
       type: "tabs",
       tabs: [
         {
+          label: "Content",
           fields: [
             {
               name: "images",
@@ -105,8 +106,33 @@ export const Products: CollectionConfig = {
             },
             {
               type: "collapsible",
-              label: ({ data }: { data?: { title?: string } }) =>
-                data?.title || "Untitled",
+              label: "Main Specification",
+              fields: [
+                {
+                  name: "screenSizes",
+                  type: "text",
+                  label: "Screen TV Sizes",
+                },
+                {
+                  name: "maxLoad",
+                  type: "text",
+                  label: "Maximum Load",
+                },
+                {
+                  name: "distanceToWall",
+                  type: "text",
+                  label: "Distance to the wall",
+                },
+                {
+                  name: "maxVesa",
+                  type: "text",
+                  label: "Max. Vesa (mm)",
+                },
+              ],
+            },
+            {
+              type: "collapsible",
+              label: "feature",
               fields: [
                 {
                   name: "features",
@@ -154,7 +180,6 @@ export const Products: CollectionConfig = {
               ],
             },
           ],
-          label: "Content",
         },
         {
           fields: [
