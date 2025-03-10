@@ -28,7 +28,7 @@ export default async function Products() {
               _status: {
                 equals: "published",
               },
-              categories: {
+              subcategories: {
                 contains: cat.id,
               },
             },

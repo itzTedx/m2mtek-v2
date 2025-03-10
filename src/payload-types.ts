@@ -103,6 +103,10 @@ export interface Product {
     };
     [k: string]: unknown;
   };
+  screenSizes?: string | null;
+  maxLoad?: string | null;
+  distanceToWall?: string | null;
+  maxVesa?: string | null;
   features?:
     | {
         title?: string | null;
@@ -431,6 +435,10 @@ export interface ProductsSelect<T extends boolean = true> {
         id?: T;
       };
   overview?: T;
+  screenSizes?: T;
+  maxLoad?: T;
+  distanceToWall?: T;
+  maxVesa?: T;
   features?:
     | T
     | {
