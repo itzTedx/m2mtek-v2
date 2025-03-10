@@ -67,6 +67,22 @@ export const queryProducts = cache(async (category: number) => {
   if (products.docs.length === 0) return null;
 });
 
+export const queryAllProducts = cache(async () => {
+  const products = await payload.find({
+    collection: "products",
+    depth: 1,
+    sort: "-createdAt",
+    pagination: false,
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
+  });
+
+  return products.docs || null;
+});
+
 export const queryFeaturedProducts = cache(async () => {
   const result = await payload.find({
     collection: "products",
