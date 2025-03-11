@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import ExpandableCard from "@/components/expandable-card";
 import { RelatedPosts } from "@/components/related-post";
@@ -38,6 +39,8 @@ type Args = {
 export default async function ProductPage({ params: paramsPromise }: Args) {
   const { slug = "" } = await paramsPromise;
   const product = await queryPostBySlug({ slug });
+
+  if (!product) return notFound();
 
   return (
     <main className="container space-y-12 pb-12 pt-16">
