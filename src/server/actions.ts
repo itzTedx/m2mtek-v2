@@ -32,6 +32,16 @@ export const queryCategories = cache(async ({ slug }: { slug: string }) => {
   return result.docs || null;
 });
 
+export const queryAllCategories = cache(async () => {
+  const result = await payload.find({
+    collection: "categories",
+    depth: 3,
+    limit: 10000,
+  });
+
+  return result.docs || null;
+});
+
 export const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
     collection: "products",
