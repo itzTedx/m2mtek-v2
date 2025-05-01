@@ -3,9 +3,6 @@ import { payload } from "@/lib/payload";
 import { Banner } from "./_components/banner";
 import { ProductCard } from "./_components/product-card";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
-
 export default async function Products() {
   const categories = await payload.find({
     collection: "categories",
