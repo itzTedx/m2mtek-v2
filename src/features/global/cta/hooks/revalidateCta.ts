@@ -9,7 +9,7 @@ export const revalidateCta: GlobalAfterChangeHook = ({
   if (!context.disableRevalidate) {
     payload.logger.info(`Revalidating cta`);
 
-    revalidateTag("global_cta");
+    revalidateTag("global_cta", "max");
   }
 
   return doc;

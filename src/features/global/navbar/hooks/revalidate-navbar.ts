@@ -9,7 +9,7 @@ export const revalidateNavbar: GlobalAfterChangeHook = ({
   if (!context.disableRevalidate) {
     payload.logger.info(`Revalidating navbar`);
 
-    revalidateTag("global_navbar");
+    revalidateTag("global_navbar", "max");
   }
 
   return doc;
