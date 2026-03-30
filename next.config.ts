@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
   },
 
   experimental: {
-
+    turbopackFileSystemCacheForBuild: true,
+    turbopackFileSystemCacheForDev: true
   },
 
   images: {
